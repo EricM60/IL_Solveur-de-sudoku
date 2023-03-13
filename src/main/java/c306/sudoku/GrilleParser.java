@@ -17,7 +17,7 @@ import c306.implementation.GrilleImpl;
 import c306.implementation.ElementDeGrilleImplAsChar;;
 
 /**
- * Méthodes utilitaire permettant de créer une 
+ * Méthodes utilitaire permettant de créer une
  *  Grille à partir d'un fichier texte.
  * Il est attendu que la première ligne contienne :
  *  le symbole de case vide, suivi des symboles
@@ -48,11 +48,15 @@ public final class GrilleParser {
      * @param in recu
      * @throws IOException               format de grille en caractere incorrect
      * @throws ValeurImpossibleException si la grille ne respècte pas les règles
+     * @throws ElementInterditException 
+     * @throws ValeurInitialeModificationException
+     * @throws HorsBornesException
      * @return
      */
     public static Grille parse(final InputStream in)
-            throws IOException, ElementInterditException, ValeurInitialeModificationException,
-             HorsBornesException, ValeurImpossibleException {
+            throws IOException, ElementInterditException,
+             ValeurInitialeModificationException, HorsBornesException, 
+             ValeurImpossibleException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
 
 
