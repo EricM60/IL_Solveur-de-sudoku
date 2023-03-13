@@ -4,6 +4,7 @@ import c306.exception.ValeurImpossibleException;
 import c306.exception.ValeurInitialeModificationException;
 import c306.sudoku.ElementDeGrille;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import c306.exception.*;
@@ -29,7 +30,18 @@ public class GrilleImpl implements Grille{
 
     @Override
     public Set<ElementDeGrille> getElements() {
-        return null;
+        Set<ElementDeGrille> elements = new HashSet<>();
+        int nbLignes = grille[0].length;
+        int nbColonnes = grille.length;
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                ElementDeGrille element = grille[i][j];
+                if (element != null && !elements.contains(element)) {
+                    elements.add(element);
+                }
+            }
+        }
+        return elements;
     }
 
     public int getDimension() {
@@ -47,26 +59,58 @@ public class GrilleImpl implements Grille{
 
     @Override
     public boolean isComplete() {
-        return false;
+        boolean bc = true;
+        int nbLignes = grille[0].length;
+        int nbColonnes = grille.length;
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                if (((Grille) grille[i][j]).getElements() == null) {
+                    bc = false;
+                }
+            }
+        }
+        return bc;
     }
 
 
     @Override
     public boolean isValeurInitiale(int x,int y) {
-        return false;
+        boolean vi = false;
+        if(getValue(x,y)!=null) {
+            vi =true;
+        }
+        return vi;
     }   
 
     @Override
     public void setValue(int x, int y, ElementDeGrille value) throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException {
             grille[x][y]=(ElementDeGrilleImplAsChar)value;
-       // throw new UnsupportedOperationException("Unimplemented method 'setValue'");}
     }
 
     @Override
     public boolean isPossible(int x, int y, ElementDeGrille value)
             throws HorsBornesException, ElementInterditException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isPossible'");
+            
+            boolean vp = false;
+            
+            if(isValeurInitiale(x, y)) {
+                vp = false;
+            }
+
+        // Vérifie que la valeur n'est pas déjà présente dans la colonne
+        for (int i = 0; i < grille.length; i++) {
+            if (((Grille) grille[x][i]).getElements() == ((Grille) value).getElements()) {
+                return false;
+            }
+        }
+        // Vérifie que la valeur n'est pas déjà présente dans la ligne
+            for (int j = 0; j < grille[0].length; j++) {
+                if (((Grille) grille[y][j]).getElements() == ((Grille) value).getElements()) {
+                    return false;
+            }
+        }
+        return true;
+
     }
 }

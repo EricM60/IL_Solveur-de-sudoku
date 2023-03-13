@@ -21,7 +21,7 @@ import c306.exception.ValeurInitialeModificationException;
 public interface Grille {
 
     /**
-     * @return les ElementDeGrille pouvant exister dans le grille.
+     * @return les ElementDeGrille pouvant exister dans la grille.
      */
     Set<ElementDeGrille> getElements();
 

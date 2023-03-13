@@ -10,13 +10,13 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      * elements.
      * elements = les elements de la grille
      */
-    char elements;
+    char element;
 
     /**
      * @return la valeur de elements
      */
     public char getElements() {
-        return elements;
+        return element;
     }
 
     /**
@@ -24,7 +24,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      * @param elements entier
      */
     public void setElements(char elements) {
-        this.elements = elements;
+        this.element = element;
     }
 
     /**
@@ -32,7 +32,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      * @param elements entier
      */
     public ElementDeGrilleImplAsChar(char elements) {
-        this.elements = elements;
+        this.element = elements;
     }
     
 }

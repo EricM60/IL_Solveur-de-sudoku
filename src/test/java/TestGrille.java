@@ -3,7 +3,9 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +31,6 @@ public class TestGrille {
     ElementDeGrille element1 = new ElementDeGrilleImplAsChar('2');
     ElementDeGrille element2 = new ElementDeGrilleImplAsChar('3');
     ElementDeGrille element3 = new ElementDeGrilleImplAsChar('4');
-    //ElementDeGrilleImplAsChar[] elements = {element0,element1,element2,element3};
     ElementDeGrille[][] elements2d = {
         {element0,element1},
         {element2,element3}
@@ -38,18 +39,30 @@ public class TestGrille {
 
     Grille grilleTest = new GrilleImpl(elements2d);
 
-    char[] comparatif = {'1','2','3','4'};
 
     @Test
     public void testgetElements() {
-        assertEquals(grilleTest.getElements(),comparatif);
+        ElementDeGrille[][] elements2d = {
+            {element0,element1},
+            {element2,element3}
+        };
+
+        Set<ElementDeGrille> comparatif = new HashSet<>();
+        comparatif.add(element0);
+        comparatif.add(element1);
+        comparatif.add(element2);
+        comparatif.add(element3);
+
+        Grille grilleTest = new GrilleImpl(elements2d);
+        assertEquals(comparatif,grilleTest.getElements());
+          
     }
 
     @Test
     public void tetsgetDimension() {
         assertEquals(grilleTest.getDimension(),4);
     }
-
+ // la ref
     @Test
     public void testgetValue() throws Exception {
         ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
@@ -61,7 +74,9 @@ public class TestGrille {
 
     @Test
     public void testisComplete() {
-        assertEquals(grilleTest.isComplete(),false);
+        ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
+        Grille grilleTestComplete = new GrilleImpl(elements2dVide);
+        assertEquals(false,grilleTestComplete.isComplete());
     }
 
     @Test
@@ -72,7 +87,11 @@ public class TestGrille {
     }
 
     @Test
-    public void testisValeurInitiale() {
-        assertEquals(grilleTest.isValeurInitiale(0,1),true);
+    public void testisValeurInitiale() throws Exception{
+        ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
+        Grille grilleTestVide = new GrilleImpl(elements2dVide);
+        assertEquals(false,grilleTestVide.isValeurInitiale(0,1));
+        grilleTestVide.setValue(0, 1, element0);
+        assertEquals(true,grilleTestVide.isValeurInitiale(0,1));      
     }
 }

@@ -86,8 +86,8 @@ public final class GrilleParser {
                 throw new IllegalArgumentException
                 ("pas le bon nombre de valeurs possibles");
             }
-            ElementDeGrille[] elementDeGrilles = 
-            elementDeGrilleMap.values().toArray(new ElementDeGrille[]{});
+            ElementDeGrille[][] elementDeGrilles = 
+            elementDeGrilleMap.values().toArray(new ElementDeGrille[][]{});
             Grille grille = new GrilleImpl(elementDeGrilles);
 
             for (int i = 0; i < dimension; i++) {
