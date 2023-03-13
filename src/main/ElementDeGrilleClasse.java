@@ -3,19 +3,19 @@ package main;
 import c306.sudoku.ElementDeGrille;
 
 /**
-* Les elements de la grille (de 1 a 9).
+* Les elements de la grille (de 1 a f @=vide).
 */
 public class ElementDeGrilleClasse implements ElementDeGrille {
     /**
      * elements.
      * elements = les elements de la grille
      */
-    int elements;
+    char elements[] = {"@","0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"};
 
     /**
      * @return la valeur de elements
      */
-    public int getElements() {
+    public char getElements() {
         return elements;
     }
 
