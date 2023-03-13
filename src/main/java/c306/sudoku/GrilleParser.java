@@ -48,16 +48,17 @@ public final class GrilleParser {
      * @param in recu
      * @throws IOException               format de grille en caractere incorrect
      * @throws ValeurImpossibleException si la grille ne respècte pas les règles
-     * @throws ElementInterditException 
+     * @throws ElementInterditException
      * @throws ValeurInitialeModificationException
      * @throws HorsBornesException
      * @return
      */
     public static Grille parse(final InputStream in)
             throws IOException, ElementInterditException,
-             ValeurInitialeModificationException, HorsBornesException, 
+             ValeurInitialeModificationException, HorsBornesException,
              ValeurImpossibleException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader
+         (new InputStreamReader(in, StandardCharsets.UTF_8))) {
 
 
             String line = reader.readLine();
@@ -66,22 +67,27 @@ public final class GrilleParser {
             }
             final int dimension = line.length() - 1;
             final char vide = line.charAt(0);
-            Map<Character, ElementDeGrille> elementDeGrilleMap = new HashMap<>();
+            Map<Character, ElementDeGrille> 
+             elementDeGrilleMap = new HashMap<>();
             for (int i = 1; i < line.length(); i++) {
                 char value = line.charAt(i);
                 if (value == vide) {
                     continue;
                 }
                 if (elementDeGrilleMap.containsKey(value)) {
-                    throw new IllegalArgumentException("valeur possible dupliquée : " + value);
+                    throw new IllegalArgumentException
+                    ("valeur possible dupliquée : " + value);
                 }
-                elementDeGrilleMap.put(value, new ElementDeGrilleImplAsChar(value));
+                elementDeGrilleMap.put
+                (value, new ElementDeGrilleImplAsChar(value));
             }
 
             if (elementDeGrilleMap.size() != dimension) {
-                throw new IllegalArgumentException("pas le bon nombre de valeurs possibles");
+                throw new IllegalArgumentException
+                ("pas le bon nombre de valeurs possibles");
             }
-            ElementDeGrille[] elementDeGrilles = elementDeGrilleMap.values().toArray(new ElementDeGrille[]{});
+            ElementDeGrille[] elementDeGrilles = 
+            elementDeGrilleMap.values().toArray(new ElementDeGrille[]{});
             Grille grille = new GrilleImpl(elementDeGrilles);
 
             for (int i = 0; i < dimension; i++) {

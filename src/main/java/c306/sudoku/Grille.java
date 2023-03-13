@@ -42,16 +42,16 @@ public interface Grille {
      * si l'élément de grille n'est pas autorisé
      *  à cette position dans la grille aux vues des autres valeurs de la grille
      * @throws ElementInterditException
-     * si l'élément de grille n'est pas autorisé 
+     * si l'élément de grille n'est pas autorisé
      *  dans cette grille pouvant être mis dans la grille
      * @throws HorsBornesException
      * si x ou y sont en dehors de la grille
      * @throws ValeurInitialeModificationException
-     * si une valeur initiale de la grille 
+     * si une valeur initiale de la grille
      *  est en position x,y
      */
     void setValue(int x, int y, ElementDeGrille value)
-            throws HorsBornesException, ValeurImpossibleException, 
+            throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException;
 
     /**
@@ -59,7 +59,7 @@ public interface Grille {
      *
      * @param x position x dans la grille
      * @param y position y dans la grille
-     * @return élément de la grille de la case x,y, null 
+     * @return élément de la grille de la case x,y, null
      *  s'il n'y a pas d'élément à cette position
      * @throws HorsBornesException si x ou y sont en dehors de la grille
      */
