@@ -6,12 +6,12 @@ package c306.exception;
  * @author Groupe C
  */
 public class HorsBornesException extends Exception {
-    
+
     /**
      * Constructeur de la classe.
      * @param error message d'erreur a afficher
      */
-    public HorsBornesException(String error) {
+    public HorsBornesException(final String error) {
         super(error);
     }
 }

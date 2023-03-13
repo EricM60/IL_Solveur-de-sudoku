@@ -6,12 +6,12 @@ package c306.exception;
  * @author Groupe C
  */
 public class ValeurImpossibleException  extends Exception {
-    
+
     /**
      * Constructeur de la classe.
      * @param error message d'erreur a afficher
      */
-    public ValeurImpossibleException(String error) {
+    public ValeurImpossibleException(final String error) {
         super(error);
     }
 }

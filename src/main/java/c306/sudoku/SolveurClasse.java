@@ -2,9 +2,9 @@ package c306.sudoku;
 
 public class SolveurClasse implements Solveur {
 
-    public boolean solve(Grille grille) {
+    public final boolean solve(final Grille grille) {
         return false;
 
     }
-    
+
 }

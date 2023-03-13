@@ -3,13 +3,18 @@ package c306.sudoku;
 
 import java.util.Set;
 
-import c306.exception.*;
+import c306.exception.ElementInterditException;
+import c306.exception.HorsBornesException;
+import c306.exception.ValeurImpossibleException;
+import c306.exception.ValeurInitialeModificationException;
 
 /**
- * Interface de grille de sudoku. Chaque case d'une Grille peut contenir un ElementDeGrille ou null si aucun élément n'est placé.
+ * Interface de grille de sudoku. Chaque case d'une Grille peut contenir un ElementDeGrille 
+ * ou null si aucun élément n'est placé.
  * Une Grille doit toujours respecter les règles du sudoku.
  * <p>
- * Une Grille peut contenir des cases qui ne doivent pas être modifiées (les valeurs initiales de la Grille)
+ * Une Grille peut contenir des cases qui ne doivent pas être modifiées 
+ * (les valeurs initiales de la Grille)
  *
  * @author Sébastien Choplin <sebastien.choplin@u-picardie.fr>
  */
@@ -17,6 +22,8 @@ public interface Grille {
 
     /**
      * Renvoie les ElementDeGrille pouvant exister dans le grille.
+     * 
+     * @return
      */
     Set<ElementDeGrille> getElements();
 
@@ -26,16 +33,18 @@ public interface Grille {
     int getDimension();
 
     /**
-     * Affecte une valeur dans une case de la grille, ou null pour 'vider' la case
+     * Affecte une valeur dans une case de la grille, ou null pour 'vider' la case.
      *
      * @param x     position x dans la grille
      * @param y     position y dans la grille
      * @param value élément de grille à mettre dans la case, null pour vider la case
-     * @throws ValeurImpossibleException           si l'élément de grille n'est pas autorisé à cette position dans la grille
-     *                                             aux vues des autres valeurs de la grille
-     * @throws ElementInterditException            si l'élément de grille n'est pas autorisé dans cette grille pouvant être mis dans la grille
+     * @throws ValeurImpossibleException           si l'élément de grille n'est pas
+     *  autorisé à cette position dans la grille aux vues des autres valeurs de la grille
+     * @throws ElementInterditException            si l'élément de grille n'est pas
+     *  autorisé dans cette grille pouvant être mis dans la grille
      * @throws HorsBornesException                 si x ou y sont en dehors de la grille
-     * @throws ValeurInitialeModificationException si une valeur initiale de la grille est en position x,y
+     * @throws ValeurInitialeModificationException si une valeur initiale de la grille 
+     * est en position x,y
      */
     void setValue(int x, int y, ElementDeGrille value)
             throws HorsBornesException, ValeurImpossibleException, ElementInterditException, ValeurInitialeModificationException;
@@ -45,7 +54,8 @@ public interface Grille {
      *
      * @param x position x dans la grille
      * @param y position y dans la grille
-     * @return élément de la grille de la case x,y, null s'il n'y a pas d'élément à cette position
+     * @return élément de la grille de la case x,y, null 
+     *  s'il n'y a pas d'élément à cette position
      * @throws HorsBornesException si x ou y sont en dehors de la grille
      */
     ElementDeGrille getValue(int x, int y) throws HorsBornesException;
@@ -63,9 +73,11 @@ public interface Grille {
      * @param x     position x dans la grille
      * @param y     position y dans la grille
      * @param value valeur a mettre dans la case
-     * @return true si value peut être placé dans la grille en position x,y en respectant les règles du sudoku et sans modifier une valeur initiale.
+     * @return true si value peut être placé dans la grille en position x,y
+     *  en respectant les règles du sudoku et sans modifier une valeur initiale.
      * @throws HorsBornesException      si x ou y sont hors bornes
-     * @throws ElementInterditException si value n'est pas un caractere pouvant être mis dans la grille
+     * @throws ElementInterditException si value n'est pas un caractere pouvant
+     *  être mis dans la grille
      */
     boolean isPossible(int x, int y, ElementDeGrille value)
             throws HorsBornesException, ElementInterditException;
@@ -75,6 +87,5 @@ public interface Grille {
      * @param y     position y dans la grille
      * @return true si la case x,y contient une valeur initiale de la grille.
      */
-    boolean isValeurInitiale(int x,int y);
-
+    boolean isValeurInitiale(int x, int y);
 }

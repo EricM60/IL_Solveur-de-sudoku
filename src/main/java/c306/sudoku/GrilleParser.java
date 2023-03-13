@@ -9,13 +9,19 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-import c306.exception.*;
+import c306.exception.ElementInterditException;
+import c306.exception.HorsBornesException;
+import c306.exception.ValeurImpossibleException;
+import c306.exception.ValeurInitialeModificationException;
 import c306.implementation.GrilleImpl;
-import c306.*;
+import c306.implementation.ElementDeGrilleImplAsChar;;
 
 /**
- * Méthodes utilitaire permettant de créer une Grille à partir d'un fichier texte.
- * Il est attendu que la première ligne contiennet : le symbole de case vide, suivi des symboles possibles dans la grille (en UTF-8).
+ * Méthodes utilitaire permettant de créer une 
+ *  Grille à partir d'un fichier texte.
+ * Il est attendu que la première ligne contienne :
+ *  le symbole de case vide, suivi des symboles
+ *  possibles dans la grille (en UTF-8).
  * Les autres lignes contiennent le contenu de la grille.
  * <p>
  * Exemple:
@@ -27,7 +33,7 @@ import c306.*;
  *
  * @author Sébastien Choplin <sebastien.choplin@u-picardie.fr>
  */
-public class GrilleParser {
+public final class GrilleParser {
     private static final char EMPTY = '-';
 
     /**
@@ -42,9 +48,11 @@ public class GrilleParser {
      * @param in recu
      * @throws IOException               format de grille en caractere incorrect
      * @throws ValeurImpossibleException si la grille ne respècte pas les règles
+     * @return
      */
     public static Grille parse(final InputStream in)
-            throws IOException, ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
+            throws IOException, ElementInterditException, ValeurInitialeModificationException,
+             HorsBornesException, ValeurImpossibleException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
 
 
