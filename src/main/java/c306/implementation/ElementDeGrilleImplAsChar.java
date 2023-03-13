@@ -1,8 +1,6 @@
-<<<<<<<< HEAD:src/main/java/c306/ElementDeGrilleImplAsChar.java
-========
 package c306.implementation;
->>>>>>>> 2e32c7d12445b3d175ff9a48a42cb452bba8d54e:src/main/java/c306/implementation/ElementDeGrilleImplAsChar.java
 
+import c306.sudoku.ElementDeGrille;
 
 /**
 * Les elements de la grille (de 1 a f @=vide).
