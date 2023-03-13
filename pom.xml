@@ -128,12 +128,7 @@
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>3.0.0</version>
         <configuration>
-          <excludes>
-            <exclude>**/sudoku/*Exception*</exclude>
-            <exclude>**/sudoku/*Impl*</exclude>
-            <exclude>**/sudoku/*Test*</exclude>
-            <exclude>**/sudokuv2/*</exclude>
-          </excludes>
+         
         </configuration>
         <reportSets>
           <reportSet>
