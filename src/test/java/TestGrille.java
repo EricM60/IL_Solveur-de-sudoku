@@ -13,6 +13,8 @@ import c306.exception.HorsBornesException;
 import c306.exception.ValeurImpossibleException;
 import c306.exception.ValeurInitialeModificationException;
 import c306.implementation.GrilleImpl;
+import c306.sudoku.ElementDeGrille;
+import c306.sudoku.Grille;
 
 /**
  * doc .
@@ -23,12 +25,18 @@ public class TestGrille {
 
 
     
-    ElementDeGrilleImplAsChar element0 = new ElementDeGrilleImplAsChar('1');
-    ElementDeGrilleImplAsChar element1 = new ElementDeGrilleImplAsChar('2');
-    ElementDeGrilleImplAsChar element2 = new ElementDeGrilleImplAsChar('3');
-    ElementDeGrilleImplAsChar element3 = new ElementDeGrilleImplAsChar('4');
-    ElementDeGrilleImplAsChar[] elements = {element0,element1,element2,element3};
-    GrilleImpl grilleTest = new GrilleImpl(elements);
+    ElementDeGrille element0 = new ElementDeGrilleImplAsChar('1');
+    ElementDeGrille element1 = new ElementDeGrilleImplAsChar('2');
+    ElementDeGrille element2 = new ElementDeGrilleImplAsChar('3');
+    ElementDeGrille element3 = new ElementDeGrilleImplAsChar('4');
+    //ElementDeGrilleImplAsChar[] elements = {element0,element1,element2,element3};
+    ElementDeGrille[][] elements2d = {
+        {element0,element1},
+        {element2,element3}
+    };
+
+
+    Grille grilleTest = new GrilleImpl(elements2d);
 
     char[] comparatif = {'1','2','3','4'};
 
@@ -39,18 +47,16 @@ public class TestGrille {
 
     @Test
     public void tetsgetDimension() {
-        assertEquals(grilleTest.getDimension(),2);
+        assertEquals(grilleTest.getDimension(),4);
     }
 
     @Test
-    public void testgetValue() {
-        try {
-            grilleTest.setValue(0, 0, elements[0]);
-        } catch (HorsBornesException | ValeurImpossibleException | ElementInterditException
-                | ValeurInitialeModificationException e) {
-            e.printStackTrace();
-        }
-        assertEquals(grilleTest.getValue(0,0),1);
+    public void testgetValue() throws Exception {
+        ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
+        Grille grilleTestGetValue = new GrilleImpl(elements2dVide);
+        assertEquals(null,grilleTestGetValue.getValue(0,0));
+        grilleTestGetValue.setValue(0, 0, element0);
+        assertEquals(element0,grilleTestGetValue.getValue(0,0));
     }
 
     @Test
@@ -59,22 +65,14 @@ public class TestGrille {
     }
 
     @Test
-    public void testisPossible() {
-        try {
-            assertEquals(grilleTest.isPossible(1,1,element0),true);
-        } catch (HorsBornesException | ElementInterditException e) {
-            e.printStackTrace();
-        }
+    public void testisPossible() throws HorsBornesException,ElementInterditException {
+        ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
+        Grille grilleTestGetValue = new GrilleImpl(elements2dVide);
+        assertEquals(true,grilleTestGetValue.isPossible(1,1,element0));
     }
 
     @Test
     public void testisValeurInitiale() {
-        try {
-            grilleTest.setValue(0, 0, elements[2]);
-        } catch (HorsBornesException | ValeurImpossibleException | ElementInterditException
-                | ValeurInitialeModificationException e) {
-            e.printStackTrace();
-        }
         assertEquals(grilleTest.isValeurInitiale(0,1),true);
     }
 }

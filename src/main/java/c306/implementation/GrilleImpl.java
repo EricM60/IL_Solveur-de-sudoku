@@ -12,19 +12,20 @@ import c306.sudoku.Grille;
 
 public class GrilleImpl implements Grille{
     
-    private ElementDeGrille[] grille;
+    private ElementDeGrille[][] grille;
 
-    public ElementDeGrille[] getGrille() {
+    public ElementDeGrille[][] getGrille() {
         return grille;
     }
 
-    public void setGrille(ElementDeGrille[] grille) {
+    public void setGrille(ElementDeGrille grille[][]) {
         this.grille = grille;
     }
 
-    public GrilleImpl(ElementDeGrille[] grille) {
+    public GrilleImpl(ElementDeGrille grille[][]) {
         this.grille = grille;
     }
+
 
     @Override
     public Set<ElementDeGrille> getElements() {
@@ -32,13 +33,16 @@ public class GrilleImpl implements Grille{
     }
 
     public int getDimension() {
-        return 0;
+        int h = grille.length;
+        int l = grille[0].length;
+        int dim = h*l;
+        return dim;
     }
 
 
     @Override
     public ElementDeGrille getValue(int x, int y) {
-        return null;
+        return grille[x][y];
     }
 
     @Override
@@ -55,8 +59,8 @@ public class GrilleImpl implements Grille{
     @Override
     public void setValue(int x, int y, ElementDeGrille value) throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException {
-    
-        throw new UnsupportedOperationException("Unimplemented method 'setValue'");
+            grille[x][y]=(ElementDeGrilleImplAsChar)value;
+       // throw new UnsupportedOperationException("Unimplemented method 'setValue'");}
     }
 
     @Override
