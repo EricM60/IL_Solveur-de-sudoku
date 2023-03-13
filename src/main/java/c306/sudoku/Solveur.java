@@ -1,4 +1,4 @@
-
+package c306.sudoku;
 
 /**
  * Interface de résolveur de Grille

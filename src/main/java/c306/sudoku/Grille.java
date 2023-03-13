@@ -1,6 +1,9 @@
+package c306.sudoku;
 
 
 import java.util.Set;
+
+import c306.exception.*;
 
 /**
  * Interface de grille de sudoku. Chaque case d'une Grille peut contenir un ElementDeGrille ou null si aucun élément n'est placé.
