@@ -76,8 +76,8 @@
         <version>3.0.0</version>
         <configuration>
           <!-- <excludes>**/module-info.java</excludes> -->
-          <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
-          <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+          <!--<suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>-->
+          <!--<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>-->
         </configuration>
       </plugin>
 
