@@ -1,5 +1,4 @@
-package main;
-
+package c306.exception;
 /**
  * definition de HorsBorneException.
  * @author Groupe C

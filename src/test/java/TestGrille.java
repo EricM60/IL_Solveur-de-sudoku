@@ -1,9 +1,9 @@
-package main;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import main.Grille;
+import c306.sudoku.Grille;
 
 /**
  * doc .

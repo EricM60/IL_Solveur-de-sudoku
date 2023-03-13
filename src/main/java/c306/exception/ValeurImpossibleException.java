@@ -1,5 +1,5 @@
-package main;
 
+package c306.exception;
 /**
  * definition de ValeurImpossibleException.
  * @author Groupe C

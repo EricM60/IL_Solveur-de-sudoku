@@ -1,4 +1,4 @@
-package main;
+package c306.implementation;
 
 import c306.sudoku.ElementDeGrille;
 
@@ -10,7 +10,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      * elements.
      * elements = les elements de la grille
      */
-    char elements[] = {"@","0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"};
+    char elements;
 
     /**
      * @return la valeur de elements
@@ -23,7 +23,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      *  assignation d'une valeur à la variable elements
      * @param elements entier
      */
-    public void setElements(int elements) {
+    public void setElements(char elements) {
         this.elements = elements;
     }
 
@@ -31,7 +31,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      * Constructeur de la classe.
      * @param elements entier
      */
-    public ElementDeGrilleImplAsChar(int elements) {
+    public ElementDeGrilleImplAsChar(char elements) {
         this.elements = elements;
     }
     
