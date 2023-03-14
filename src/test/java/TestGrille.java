@@ -94,10 +94,16 @@ public class TestGrille {
     }
 
     @Test
-    public void testisPossible() throws HorsBornesException,ElementInterditException {
+    public void testisPossible() throws Exception {
         ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
         Grille grilleTestGetValue = new GrilleImpl(elements2dVide);
         assertEquals(true,grilleTestGetValue.isPossible(1,1,element0));
+
+        grilleTestGetValue.setValue(1, 1, element0);
+
+        assertEquals(false,grilleTestGetValue.isPossible(1,1,element0));
+        assertEquals(false,grilleTestGetValue.isPossible(0,1,element0));
+        assertEquals(false,grilleTestGetValue.isPossible(1,0,element0));
     }
 
     @Test

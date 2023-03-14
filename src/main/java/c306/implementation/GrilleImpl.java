@@ -100,13 +100,13 @@ public class GrilleImpl implements Grille{
 
         // Vérifie que la valeur n'est pas déjà présente dans la colonne
         for (int i = 0; i < grille.length; i++) {
-            if (((Grille) grille[x][i]).getElements() == ((Grille) value).getElements()) {
+            if (grille[x][i] == value) {
                 return false;
             }
         }
         // Vérifie que la valeur n'est pas déjà présente dans la ligne
             for (int j = 0; j < grille[0].length; j++) {
-                if (((Grille) grille[y][j]).getElements() == ((Grille) value).getElements()) {
+                if (grille[y][j]  == value) {
                     return false;
             }
         }
