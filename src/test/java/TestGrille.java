@@ -62,7 +62,7 @@ public class TestGrille {
     public void tetsgetDimension() {
         assertEquals(grilleTest.getDimension(),4);
     }
- // la ref
+
     @Test
     public void testgetValue() throws Exception {
         ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
@@ -84,6 +84,13 @@ public class TestGrille {
         };
         Grille grilleTestCompleteV = new GrilleImpl(elements2d);
         assertEquals(true,grilleTestCompleteV.isComplete());
+
+        ElementDeGrille[][] elements2d2 = {
+            {element0,element1},
+            {null,element3}
+        };
+        Grille grilleTestCompleteF2 = new GrilleImpl(elements2d2);
+        assertEquals(false,grilleTestCompleteF2.isComplete());
     }
 
     @Test
