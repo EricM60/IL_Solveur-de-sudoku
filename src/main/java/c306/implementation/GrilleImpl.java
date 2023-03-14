@@ -59,13 +59,13 @@ public class GrilleImpl implements Grille{
 
     @Override
     public boolean isComplete() {
-        boolean bc = true;
+        boolean bc = false;
         int nbLignes = grille[0].length;
         int nbColonnes = grille.length;
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
-                if (((Grille) grille[i][j]).getElements() == null) {
-                    bc = false;
+                if ((grille[i][j]) != null) {
+                    bc = true;
                 }
             }
         }

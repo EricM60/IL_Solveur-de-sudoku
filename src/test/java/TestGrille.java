@@ -75,8 +75,15 @@ public class TestGrille {
     @Test
     public void testisComplete() {
         ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
-        Grille grilleTestComplete = new GrilleImpl(elements2dVide);
-        assertEquals(false,grilleTestComplete.isComplete());
+        Grille grilleTestCompleteF = new GrilleImpl(elements2dVide);
+        assertEquals(false,grilleTestCompleteF.isComplete());
+
+        ElementDeGrille[][] elements2d = {
+            {element0,element1},
+            {element2,element3}
+        };
+        Grille grilleTestCompleteV = new GrilleImpl(elements2d);
+        assertEquals(true,grilleTestCompleteV.isComplete());
     }
 
     @Test
