@@ -10,22 +10,9 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      * elements.
      * elements = les elements de la grille
      */
-    char element;
+    private final char element;
 
-    /**
-     * @return la valeur de elements
-     */
-    public char getElements() {
-        return element;
-    }
 
-    /**
-     *  assignation d'une valeur à la variable elements
-     * @param elements entier
-     */
-    public void setElements(char elements) {
-        this.element = element;
-    }
 
     /**
      * Constructeur de la classe.
