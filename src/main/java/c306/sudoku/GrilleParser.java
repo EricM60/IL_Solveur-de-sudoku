@@ -57,7 +57,7 @@ public final class GrilleParser {
             throws IOException, ElementInterditException,
              ValeurInitialeModificationException, HorsBornesException,
              ValeurImpossibleException {
-        try (BufferedReader reader = new BufferedReader (
+        try (BufferedReader reader = new BufferedReader(
             new InputStreamReader(in, StandardCharsets.UTF_8))) {
 
 
@@ -67,7 +67,7 @@ public final class GrilleParser {
             }
             final int dimension = line.length() - 1;
             final char vide = line.charAt(0);
-            Map<Character, ElementDeGrille> 
+            Map<Character, ElementDeGrille>
             elementDeGrilleMap = new HashMap<>();
             for (int i = 1; i < line.length(); i++) {
                 char value = line.charAt(i);
@@ -75,10 +75,10 @@ public final class GrilleParser {
                     continue;
                 }
                 if (elementDeGrilleMap.containsKey(value)) {
-                    throw new IllegalArgumentException (
+                    throw new IllegalArgumentException(
                         "valeur possible dupliquée : " + value);
                 }
-                elementDeGrilleMap.put (
+                elementDeGrilleMap.put(
                     value, new ElementDeGrilleImplAsChar(value));
             }
 
@@ -99,7 +99,7 @@ public final class GrilleParser {
                 for (int j = 0; j < dimension; j++) {
                     char c = line.charAt(j);
                     if (c != vide) {
-                        ElementDeGrille elementDeGrille = 
+                        ElementDeGrille elementDeGrille =
                         elementDeGrilleMap.get(c);
                         if (elementDeGrille == null) {
                             throw new ValeurImpossibleException(
