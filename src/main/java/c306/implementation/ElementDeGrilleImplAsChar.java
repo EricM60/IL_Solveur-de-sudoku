@@ -18,8 +18,8 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      * Constructeur de la classe.
      * @param elements entier
      */
-    public ElementDeGrilleImplAsChar(char elements) {
+    public ElementDeGrilleImplAsChar(final char elements) {
         this.element = elements;
     }
-    
+
 }
