@@ -14,7 +14,7 @@ import c306.exception.HorsBornesException;
 import c306.exception.ValeurImpossibleException;
 import c306.exception.ValeurInitialeModificationException;
 import c306.implementation.GrilleImpl;
-import c306.implementation.ElementDeGrilleImplAsChar;;
+import c306.implementation.ElementDeGrilleImplAsChar;
 
 /**
  * Méthodes utilitaire permettant de créer une
@@ -34,6 +34,10 @@ import c306.implementation.ElementDeGrilleImplAsChar;;
  * @author Sébastien Choplin <sebastien.choplin@u-picardie.fr>
  */
 public final class GrilleParser {
+
+    /**
+     * Caractère correspondant aux cases vides.
+     */
     private static final char EMPTY = '-';
 
     /**
@@ -46,12 +50,12 @@ public final class GrilleParser {
      * Fonction parse.
      *
      * @param in recu
-     * @throws IOException               format de grille en caractere incorrect
-     * @throws ValeurImpossibleException si la grille ne respècte pas les règles
-     * @throws ElementInterditException
-     * @throws ValeurInitialeModificationException
-     * @throws HorsBornesException
-     * @return
+     * @throws IOException                          format de grille en caractere incorrect
+     * @throws ValeurImpossibleException            si la grille ne respècte pas les règles
+     * @throws ElementInterditException             si la grille contient des valeurs interdites
+     * @throws ValeurInitialeModificationException  si une valeur de la grille initiale est modifiée
+     * @throws HorsBornesException                  si des élèments sont en dehors de la grille
+     * @return la grille 
      */
     public static Grille parse(final InputStream in)
             throws IOException, ElementInterditException,
