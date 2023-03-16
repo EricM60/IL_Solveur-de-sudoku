@@ -12,7 +12,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      */
     private final char element;
 
-
+    private boolean vi;
 
     /**
      * Constructeur de la classe.
@@ -20,6 +20,20 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      */
     public ElementDeGrilleImplAsChar(final char elements) {
         this.element = elements;
+        this.vi =false;
+    }
+
+    /**
+     * Constructeur de la classe.
+     * @param elements entier
+     */
+    public ElementDeGrilleImplAsChar(final char elements,boolean viM) {
+        this.element = elements;
+        this.vi =viM;
+    }
+
+    public boolean getVi() {
+        return vi;
     }
 
 }

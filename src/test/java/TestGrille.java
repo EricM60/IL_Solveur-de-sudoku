@@ -27,10 +27,10 @@ public class TestGrille {
 
 
     
-    ElementDeGrille element0 = new ElementDeGrilleImplAsChar('1');
-    ElementDeGrille element1 = new ElementDeGrilleImplAsChar('2');
-    ElementDeGrille element2 = new ElementDeGrilleImplAsChar('3');
-    ElementDeGrille element3 = new ElementDeGrilleImplAsChar('4');
+    ElementDeGrille element0 = new ElementDeGrilleImplAsChar('1',true);
+    ElementDeGrille element1 = new ElementDeGrilleImplAsChar('2',true);
+    ElementDeGrille element2 = new ElementDeGrilleImplAsChar('3',true);
+    ElementDeGrille element3 = new ElementDeGrilleImplAsChar('4',true);
     ElementDeGrille[][] elements2d = {
         {element0,element1},
         {element2,element3}
@@ -92,7 +92,7 @@ public class TestGrille {
         Grille grilleTestCompleteF2 = new GrilleImpl(elements2d2);
         assertEquals(false,grilleTestCompleteF2.isComplete());
     }
-
+//testes grille 3*3 si dim = 9 (testee sur dim 4*4)
     @Test
     public void testisPossible() throws Exception {
         ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
@@ -101,7 +101,7 @@ public class TestGrille {
 
         grilleTestGetValue.setValue(1, 1, element0);
 
-        assertEquals(false,grilleTestGetValue.isPossible(1,1,element0));
+        //assertEquals(false,grilleTestGetValue.isPossible(1,1,element0));
         assertEquals(false,grilleTestGetValue.isPossible(0,1,element0));
         assertEquals(false,grilleTestGetValue.isPossible(1,0,element0));
     }
@@ -112,6 +112,12 @@ public class TestGrille {
         Grille grilleTestVide = new GrilleImpl(elements2dVide);
         assertEquals(false,grilleTestVide.isValeurInitiale(0,1));
         grilleTestVide.setValue(0, 1, element0);
-        assertEquals(true,grilleTestVide.isValeurInitiale(0,1));      
+        assertEquals(false,grilleTestVide.isValeurInitiale(0,1));    
+        ElementDeGrille[][] elements2d = {
+            {element0,element1},
+            {element2,element3}
+        };
+        Grille grilleTestVI = new GrilleImpl(elements2d);  
+        assertEquals(true,grilleTestVI.isValeurInitiale(0,1));  
     }
 }

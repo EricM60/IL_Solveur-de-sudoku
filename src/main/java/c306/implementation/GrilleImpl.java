@@ -1,7 +1,5 @@
 package c306.implementation;
 
-import c306.exception.ValeurImpossibleException;
-import c306.exception.ValeurInitialeModificationException;
 import c306.sudoku.ElementDeGrille;
 
 import java.util.HashSet;
@@ -53,7 +51,10 @@ public class GrilleImpl implements Grille{
 
 
     @Override
-    public ElementDeGrille getValue(int x, int y) {
+    public ElementDeGrille getValue(int x, int y) throws HorsBornesException {
+        if (x < 0 || x >= grille.length || y < 0 || y >= grille[x].length) {
+            throw new HorsBornesException("valeur hors borne");
+        }
         return grille[x][y];
     }
 
@@ -76,8 +77,12 @@ public class GrilleImpl implements Grille{
     @Override
     public boolean isValeurInitiale(int x,int y) {
         boolean vi = false;
-        if(getValue(x,y)!=null) {
-            vi =true;
+        try {
+            if(getValue(x,y)!=null && ((ElementDeGrilleImplAsChar) grille[x][y]).getVi()==true) {
+                vi =true;
+            }
+        } catch (HorsBornesException e) {
+            e.printStackTrace();
         }
         return vi;
     }   
@@ -85,13 +90,30 @@ public class GrilleImpl implements Grille{
     @Override
     public void setValue(int x, int y, ElementDeGrille value) throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException {
-            grille[x][y]=(ElementDeGrilleImplAsChar)value;
+            
+                if (x < 0 || x >= grille.length || y < 0 || y >= grille[x].length) {
+                    throw new HorsBornesException("valeur hors borne");
+                }
+                if (((Grille) grille[x][y]).isValeurInitiale(x,y)) {
+                    throw new ValeurInitialeModificationException("impossible de modifier une valeur initiale");
+                }
+                if (value != null && !isPossible(x, y,value)) {
+                    throw new ValeurImpossibleException("valeur impossible a placer");
+                }
+                /*if (value != null && grille[x][y] >= '1') {
+                    throw new ElementInterditException("characere interdit");
+                } */
+                grille[x][y]=(ElementDeGrilleImplAsChar)value;
     }
 
     @Override
     public boolean isPossible(int x, int y, ElementDeGrille value)
             throws HorsBornesException, ElementInterditException {
             
+            if (x < 0 || x >= grille.length || y < 0 || y >= grille[x].length) {
+                throw new HorsBornesException("valeur hors borne");
+            }
+                
             boolean vp = false;
             
             if(isValeurInitiale(x, y)) {
@@ -110,6 +132,20 @@ public class GrilleImpl implements Grille{
                     return false;
             }
         }
+
+        //verife que la valeur n'est pas dans la sous grille
+        double tailleSousGrille = Math.sqrt(grille.length*grille[0].length);
+        int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
+        int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
+        int debutY = (y / tailleSousGrillereel) * tailleSousGrillereel;
+        for (int i = debutX; i < debutX + tailleSousGrillereel; i++) {
+            for (int j = debutY; j < debutY + tailleSousGrillereel; j++) {
+                if (grille[i][j] == value) {
+                    return false;
+                }
+            }
+        }
+
         return true;
 
     }
