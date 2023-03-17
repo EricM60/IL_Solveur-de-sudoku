@@ -20,19 +20,20 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      */
     public ElementDeGrilleImplAsChar(final char elements) {
         this.element = elements;
-        this.vi =false;
+        this.vi = false;
     }
 
     /**
      * Constructeur de la classe.
      * @param elements entier
+     * @param viM booléen
      */
-    public ElementDeGrilleImplAsChar(final char elements,boolean viM) {
+    public ElementDeGrilleImplAsChar(final char elements, final boolean viM) {
         this.element = elements;
-        this.vi =viM;
+        this.vi = viM;
     }
 
-    public boolean getVi() {
+    public final boolean getVi() {
         return vi;
     }
 

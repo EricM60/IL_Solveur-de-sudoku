@@ -50,12 +50,17 @@ public final class GrilleParser {
      * Fonction parse.
      *
      * @param in recu
-     * @throws IOException                          format de grille en caractere incorrect
-     * @throws ValeurImpossibleException            si la grille ne respècte pas les règles
-     * @throws ElementInterditException             si la grille contient des valeurs interdites
-     * @throws ValeurInitialeModificationException  si une valeur de la grille initiale est modifiée
-     * @throws HorsBornesException                  si des élèments sont en dehors de la grille
-     * @return la grille 
+     * @throws IOException
+     *  format de grille en caractere incorrect
+     * @throws ValeurImpossibleException
+     *  si la grille ne respècte pas les règles
+     * @throws ElementInterditException
+     *  si la grille contient des valeurs interdites
+     * @throws ValeurInitialeModificationException
+     *  si une valeur de la grille initiale est modifiée
+     * @throws HorsBornesException
+     *  si des élèments sont en dehors de la grille
+     * @return la grille
      */
     public static Grille parse(final InputStream in)
             throws IOException, ElementInterditException,
