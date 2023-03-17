@@ -44,4 +44,12 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
         return vi;
     }
 
+    /**
+     * retourne la valeur de element.
+     * @return le charactere dans l'objet
+     */
+    public final char getElement() {
+        return element;
+    }
+
 }
