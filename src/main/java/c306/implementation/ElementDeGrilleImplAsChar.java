@@ -12,6 +12,9 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      */
     private final char element;
 
+    /**
+     * Validation valeur initiale de la grille.
+     */
     private boolean vi;
 
     /**
@@ -33,6 +36,10 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
         this.vi = viM;
     }
 
+    /**
+     * retourne la validation de la valeur initiale.
+     * @return la validation que c'est une valeur initiale
+     */
     public final boolean getVi() {
         return vi;
     }
