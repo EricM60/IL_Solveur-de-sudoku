@@ -3,6 +3,7 @@ package c306.implementation;
 import c306.sudoku.ElementDeGrille;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import c306.exception.*;
@@ -13,27 +14,62 @@ public class GrilleImpl implements Grille{
     
     private final ElementDeGrille[][] casesGrille;
 
-    private final char[] elementAutorise = {'1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+    private final Set<ElementDeGrille> elementAutorise;
 
+    ElementDeGrille element1V = new ElementDeGrilleImplAsChar('1');
+    ElementDeGrille element2V = new ElementDeGrilleImplAsChar('2');
+    ElementDeGrille element3V = new ElementDeGrilleImplAsChar('3');
+    ElementDeGrille element4V = new ElementDeGrilleImplAsChar('4');
+    ElementDeGrille element5V = new ElementDeGrilleImplAsChar('5');
+    ElementDeGrille element6V = new ElementDeGrilleImplAsChar('6');
+    ElementDeGrille element7V = new ElementDeGrilleImplAsChar('7');
+    ElementDeGrille element8V = new ElementDeGrilleImplAsChar('8');
+    ElementDeGrille element9V = new ElementDeGrilleImplAsChar('9');
+    ElementDeGrille elementaV = new ElementDeGrilleImplAsChar('a');
+    ElementDeGrille elementbV = new ElementDeGrilleImplAsChar('b');
+    ElementDeGrille elementcV = new ElementDeGrilleImplAsChar('c');
+    ElementDeGrille elementdV = new ElementDeGrilleImplAsChar('d');
+    ElementDeGrille elementeV = new ElementDeGrilleImplAsChar('e');
+    ElementDeGrille elementfV = new ElementDeGrilleImplAsChar('f');
+
+    private Set<ElementDeGrille>getExpectedElement() {
+        Set<ElementDeGrille> expectedElements = new HashSet<>();
+        expectedElements.add(element1V);
+        expectedElements.add(element2V);
+        expectedElements.add(element3V);
+        expectedElements.add(element4V);
+        expectedElements.add(element5V);
+        expectedElements.add(element6V);
+        expectedElements.add(element7V);
+        expectedElements.add(element8V);
+        expectedElements.add(element9V);
+        expectedElements.add(elementaV);
+        expectedElements.add(elementbV);
+        expectedElements.add(elementcV);
+        expectedElements.add(elementdV);
+        expectedElements.add(elementeV);
+        expectedElements.add(elementfV);
+        return expectedElements;
+    }
+
+
+    public GrilleImpl(ElementDeGrille grille[][],Set<ElementDeGrille> elementAutorise) {
+        this.casesGrille = grille;
+        this.elementAutorise = elementAutorise;
+    }
 
     public GrilleImpl(ElementDeGrille grille[][]) {
         this.casesGrille = grille;
+        this.elementAutorise = getExpectedElement();
     }
 
-// changer pour renvoyer tt les elements possible dans la grille
+
     @Override
-    public Set<ElementDeGrille> getElements() {
+    public  Set<ElementDeGrille> getElements() {
         Set<ElementDeGrille> elements = new HashSet<>();
-        int nbLignes = casesGrille[0].length;
-        int nbColonnes = casesGrille.length;
-        for (int i = 0; i < nbLignes; i++) {
-            for (int j = 0; j < nbColonnes; j++) {
-                ElementDeGrille element = casesGrille[i][j];
-                if (element != null && !elements.contains(element)) {
-                    elements.add(element);
-                }
-            }
-        }
+        int taille = elementAutorise.size();
+        Iterator iter = elementAutorise.iterator();
+        elements.addAll(elementAutorise);
         return elements;
     }
 
@@ -87,7 +123,9 @@ public class GrilleImpl implements Grille{
     public void setValue(int x, int y, ElementDeGrille value) throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException {
             
-                boolean autorise = false;
+                //boolean autorise = false;
+
+                Set<ElementDeGrille> possible = getElements();
 
                 if (x < 0 || x >= casesGrille.length || y < 0 || y >= casesGrille[x].length) {
                     throw new HorsBornesException("valeur hors borne");
@@ -99,12 +137,7 @@ public class GrilleImpl implements Grille{
                     throw new ValeurImpossibleException("valeur impossible a placer");
                 }
 
-                for (int i=0;i <= elementAutorise.length-1;i++) {
-                    if (value != null && ((ElementDeGrilleImplAsChar) value).getElement() == elementAutorise[i]) {
-                        autorise = true;
-                    }
-                }
-                if(autorise == true) {
+                if(possible.contains(value)) {
                     casesGrille[x][y]=value;
                 }
                 else {

@@ -44,12 +44,32 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
         return vi;
     }
 
-    /**
-     * retourne la valeur de element.
-     * @return le charactere dans l'objet
-     */
-    public final char getElement() {
-        return element;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + element;
+        result = prime * result + (vi ? 1231 : 1237);
+        return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ElementDeGrilleImplAsChar other = (ElementDeGrilleImplAsChar) obj;
+        if (element != other.element)
+            return false;
+        if (vi != other.vi)
+            return false;
+        return true;
+    }
+
+    
+
 
 }
