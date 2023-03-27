@@ -88,8 +88,8 @@ public class GrilleImpl implements Grille {
     @Override
     public final ElementDeGrille getValue(final int x, final int y)
     throws HorsBornesException {
-        if (x < 0 || x >= casesGrille.length ||
-        y < 0 || y >= casesGrille[x].length) {
+        if (x < 0 || x >= casesGrille.length
+        || y < 0 || y >= casesGrille[x].length) {
             throw new HorsBornesException("valeur hors borne");
         }
         return casesGrille[x][y];
@@ -115,8 +115,9 @@ public class GrilleImpl implements Grille {
     public final boolean isValeurInitiale(final int x, final int y) {
         boolean vi = false;
         try {
-            if (getValue(x, y) != null 
-            && ((ElementDeGrilleImplAsChar) casesGrille[x][y]).getVi() == true) {
+            if (getValue(x, y) != null
+            && ((ElementDeGrilleImplAsChar)
+            casesGrille[x][y]).getVi() == true) {
                 vi = true;
             }
         } catch (HorsBornesException e) {
@@ -150,8 +151,7 @@ public class GrilleImpl implements Grille {
 
                 if (possible.contains(value)) {
                     casesGrille[x][y] = value;
-                }
-                else {
+                } else {
                     throw new ElementInterditException(
                         "characere interdit");
                 }
@@ -186,7 +186,7 @@ public class GrilleImpl implements Grille {
 
         //verife que la valeur n'est pas dans la sous grille
         double tailleSousGrille = Math.sqrt(
-            casesGrille.length*casesGrille[0].length);
+            casesGrille.length * casesGrille[0].length);
         int tailleSousGrillereel = (int) Math.floor(
             tailleSousGrille);
         int debutX = (x / tailleSousGrillereel)
