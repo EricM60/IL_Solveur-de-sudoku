@@ -86,9 +86,10 @@ public class GrilleImpl implements Grille {
 
 
     @Override
-    public final ElementDeGrille getValue(final int x,final int y)
+    public final ElementDeGrille getValue(final int x, final int y)
     throws HorsBornesException {
-        if (x < 0 || x >= casesGrille.length || y < 0 || y >= casesGrille[x].length) {
+        if (x < 0 || x >= casesGrille.length ||
+        y < 0 || y >= casesGrille[x].length) {
             throw new HorsBornesException("valeur hors borne");
         }
         return casesGrille[x][y];
@@ -114,8 +115,8 @@ public class GrilleImpl implements Grille {
     public final boolean isValeurInitiale(final int x, final int y) {
         boolean vi = false;
         try {
-            if (getValue(x, y) != null && 
-            ((ElementDeGrilleImplAsChar) casesGrille[x][y]).getVi() == true) {
+            if (getValue(x, y) != null 
+            && ((ElementDeGrilleImplAsChar) casesGrille[x][y]).getVi() == true) {
                 vi = true;
             }
         } catch (HorsBornesException e) {
@@ -125,47 +126,48 @@ public class GrilleImpl implements Grille {
     }
 
     @Override
-    public final void setValue(final int x, final int y, final ElementDeGrille value)
+    public final void setValue(final int x, final int y,
+    final ElementDeGrille value)
     throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException {
                 //boolean autorise = false;
 
                 Set<ElementDeGrille> possible = getElements();
 
-                if (x < 0 || x >= casesGrille.length ||
-                y < 0 || y >= casesGrille[x].length) {
+                if (x < 0 || x >= casesGrille.length
+                || y < 0 || y >= casesGrille[x].length) {
                     throw new HorsBornesException(
                         "valeur hors borne");
                 }
-                if (this.isValeurInitiale(x,y)) {
+                if (this.isValeurInitiale(x, y)) {
                     throw new ValeurInitialeModificationException(
                         "impossible de modifier une valeur initiale");
                 }
-                if (value != null && !isPossible(x, y,value)) {
+                if (value != null && !isPossible(x, y, value)) {
                     throw new ValeurImpossibleException(
                         "valeur impossible a placer");
                 }
 
-                if(possible.contains(value)) {
-                    casesGrille[x][y]=value;
+                if (possible.contains(value)) {
+                    casesGrille[x][y] = value;
                 }
                 else {
                     throw new ElementInterditException(
                         "characere interdit");
                 }
-    }
+            }
 
     @Override
-    public final boolean isPossible(final int x, final int y, final ElementDeGrille value)
+    public final boolean isPossible(
+        final int x, final int y, final ElementDeGrille value)
             throws HorsBornesException, ElementInterditException {
-            if (x < 0 || x >= casesGrille.length ||
-            y < 0 || y >= casesGrille[x].length) {
+            if (x < 0 || x >= casesGrille.length
+            || y < 0 || y >= casesGrille[x].length) {
                 throw new HorsBornesException(
                     "valeur hors borne");
             }
             boolean vp = false;
-            
-            if(isValeurInitiale(x, y)) {
+            if (isValeurInitiale(x, y)) {
                 vp = false;
             }
 
@@ -183,12 +185,18 @@ public class GrilleImpl implements Grille {
         }
 
         //verife que la valeur n'est pas dans la sous grille
-        double tailleSousGrille = Math.sqrt(casesGrille.length*casesGrille[0].length);
-        int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
-        int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
-        int debutY = (y / tailleSousGrillereel) * tailleSousGrillereel;
-        for (int i = debutX; i < debutX + tailleSousGrillereel; i++) {
-            for (int j = debutY; j < debutY + tailleSousGrillereel; j++) {
+        double tailleSousGrille = Math.sqrt(
+            casesGrille.length*casesGrille[0].length);
+        int tailleSousGrillereel = (int) Math.floor(
+            tailleSousGrille);
+        int debutX = (x / tailleSousGrillereel)
+        * tailleSousGrillereel;
+        int debutY = (y / tailleSousGrillereel)
+        * tailleSousGrillereel;
+        for (int i = debutX;
+        i < debutX + tailleSousGrillereel; i++) {
+            for (int j = debutY;
+            j < debutY + tailleSousGrillereel; j++) {
                 if (casesGrille[i][j] == value) {
                     return false;
                 }
