@@ -86,8 +86,8 @@ public class GrilleImpl implements Grille {
     @Override
     public final ElementDeGrille getValue(final int x, final int y)
     throws HorsBornesException {
-        if (x < 0 || x >= casesGrille.length ||
-        y < 0 || y >= casesGrille[x].length) {
+        if (x < 0 || x >= casesGrille.length
+        || y < 0 || y >= casesGrille[x].length) {
             throw new HorsBornesException("valeur hors borne");
         }
         return casesGrille[x][y];
@@ -113,8 +113,9 @@ public class GrilleImpl implements Grille {
     public final boolean isValeurInitiale(final int x, final int y) {
         boolean vi = false;
         try {
-            if (getValue(x, y) != null 
-            && ((ElementDeGrilleImplAsChar) casesGrille[x][y]).getVi() == true) {
+            if (getValue(x, y) != null
+            && ((ElementDeGrilleImplAsChar)
+            casesGrille[x][y]).getVi() == true) {
                 vi = true;
             }
         } catch (HorsBornesException e) {
@@ -128,9 +129,6 @@ public class GrilleImpl implements Grille {
     final ElementDeGrille value)
     throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException {
-                //boolean autorise = false;
-
-                Set<ElementDeGrille> possible = getElements();
 
                 if (x < 0 || x >= casesGrille.length
                 || y < 0 || y >= casesGrille[x].length) {
@@ -146,16 +144,24 @@ public class GrilleImpl implements Grille {
                     throw new ValeurImpossibleException(
                         "valeur impossible a placer");
                 }
-                else {
-                    throw new ElementInterditException(
-                        "characere interdit");
-                }
+
             }
 
     @Override
     public final boolean isPossible(
         final int x, final int y, final ElementDeGrille value)
             throws HorsBornesException, ElementInterditException {
+
+            Set<ElementDeGrille> possible = getElements();
+
+            if (possible.contains(value)) {
+                casesGrille[x][y] = value;
+            }
+            else {
+                throw new ElementInterditException(
+                    "characere interdit");
+            }
+
             if (x < 0 || x >= casesGrille.length
             || y < 0 || y >= casesGrille[x].length) {
                 throw new HorsBornesException(
@@ -185,13 +191,19 @@ public class GrilleImpl implements Grille {
         }
 
         //verife que la valeur n'est pas dans la sous grille
-        double tailleSousGrille = Math.sqrt(getDimension());
-        int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
-        int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
-        int debutY = (y / tailleSousGrillereel) * tailleSousGrillereel;
-        for (int i = debutX; i < debutX + tailleSousGrillereel; i++) {
-            for (int j = debutY; j < debutY + tailleSousGrillereel; j++) {
-                if (value.equals(casesGrille[i][j])) {
+        double tailleSousGrille = Math.sqrt(
+            casesGrille.length*casesGrille[0].length);
+        int tailleSousGrillereel = (int) Math.floor(
+            tailleSousGrille);
+        int debutX = (x / tailleSousGrillereel)
+        * tailleSousGrillereel;
+        int debutY = (y / tailleSousGrillereel)
+        * tailleSousGrillereel;
+        for (int i = debutX;
+        i < debutX + tailleSousGrillereel; i++) {
+            for (int j = debutY;
+            j < debutY + tailleSousGrillereel; j++) {
+                if (casesGrille[i][j] == value) {
                     return false;
                 }
             }
