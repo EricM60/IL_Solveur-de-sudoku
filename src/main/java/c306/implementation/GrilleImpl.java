@@ -56,14 +56,29 @@ public class GrilleImpl implements Grille {
     }
 
 
-    public GrilleImpl(final ElementDeGrille[][] grille,
-    final Set<ElementDeGrille> elementAutorise) {
-        this.casesGrille = grille;
+    public GrilleImpl(final ElementDeGrille[][] grille, final Set<ElementDeGrille> elementAutorise) {
+
+        this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
+        
+        for (int i = 0; i < grille.length; i++) {
+            for (int j = 0; j < grille[i].length; j++) {
+                this.casesGrille[i][j] = grille[i][j];
+            }
+        }
+        
         this.elementAutorise = elementAutorise;
     }
 
     public GrilleImpl(final ElementDeGrille[][] grille) {
-        this.casesGrille = grille;
+
+        this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
+        
+        for (int i = 0; i < grille.length; i++) {
+            for (int j = 0; j < grille[i].length; j++) {
+                this.casesGrille[i][j] = grille[i][j];
+            }
+        }
+        
         this.elementAutorise = getExpectedElement();
     }
 
