@@ -65,7 +65,7 @@ public class GrilleImpl implements Grille {
             }
         }
         
-        this.elementAutorise = new HashSet<>(getExpectedElement());
+        this.elementAutorise = elementAutorise;
     }
 
     public GrilleImpl(final ElementDeGrille[][] grille) {
@@ -167,9 +167,9 @@ public class GrilleImpl implements Grille {
         final int x, final int y, final ElementDeGrille value)
             throws HorsBornesException, ElementInterditException {
 
-            Set<ElementDeGrille> possible = getElements();
+            
 
-            if (!possible.contains(value) && value != null) {
+            if (!elementAutorise.contains(value) && value != null) {
                 throw new ElementInterditException(
                     "characere interdit");
             }
