@@ -1,6 +1,8 @@
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,10 +28,10 @@ import c306.sudoku.Grille;
  */
 public class TestGrille {
 
-    ElementDeGrille element0Initial = new ElementDeGrilleImplAsChar('1',true);
-    ElementDeGrille element1Initial = new ElementDeGrilleImplAsChar('2',true);
-    ElementDeGrille element2Initial = new ElementDeGrilleImplAsChar('3',true);
-    ElementDeGrille element3Initial = new ElementDeGrilleImplAsChar('4',true);
+    ElementDeGrille element1Initial = new ElementDeGrilleImplAsChar('1',true);
+    ElementDeGrille element2Initial = new ElementDeGrilleImplAsChar('2',true);
+    ElementDeGrille element3Initial = new ElementDeGrilleImplAsChar('3',true);
+    ElementDeGrille element4Initial = new ElementDeGrilleImplAsChar('4',true);
 
     ElementDeGrille element1V = new ElementDeGrilleImplAsChar('1');
     ElementDeGrille element2V = new ElementDeGrilleImplAsChar('2');
@@ -50,8 +52,8 @@ public class TestGrille {
     ElementDeGrille element1nonIninitial = new ElementDeGrilleImplAsChar('4');
 
     ElementDeGrille[][] elements2d = {
-        {element0Initial,element1Initial},
-        {element2Initial,element3Initial}
+        {element1Initial,element2Initial},
+        {element3Initial,element4Initial}
     };
 
 
@@ -72,6 +74,15 @@ public class TestGrille {
         expectedElements.add(elementdV);
         expectedElements.add(elementeV);
         expectedElements.add(elementfV);
+        return expectedElements;
+    }
+
+    private Set<ElementDeGrille>getExpectedElement4() {
+        Set<ElementDeGrille> expectedElements = new HashSet<>();
+        expectedElements.add(element1V);
+        expectedElements.add(element2V);
+        expectedElements.add(element3V);
+        expectedElements.add(element4V);
         return expectedElements;
     }
 
@@ -101,7 +112,39 @@ public class TestGrille {
     }
 
     @Test
+    public void testgetElementsAutre() {
+
+        ElementDeGrille[][] elements2d = {
+            {element1nonIninitial,element1nonIninitial},
+            {element1nonIninitial,element1nonIninitial}
+        };
+
+        
+
+        GrilleImpl grilleTest = new GrilleImpl(elements2d,this.getExpectedElement());
+
+        Set<ElementDeGrille> possible = grilleTest.getElements();
+
+
+
+        //assertEquals(true,possible.equals(expectedElements));
+
+        assertEquals(true,possible.contains(element1V));
+          
+    }
+
+    @Test
     public void tetsgetDimension() {
+        ElementDeGrille[][] elements2d = {
+            {null,null,null,null},
+            {null,null,null,null},
+            {null,null,null,null},
+            {null,null,null,null}
+        };
+
+        
+
+        GrilleImpl grilleTest = new GrilleImpl(elements2d,this.getExpectedElement4());
         assertEquals(grilleTest.getDimension(),4);
     }
 
@@ -121,15 +164,15 @@ public class TestGrille {
         assertEquals(false,grilleTestCompleteF.isComplete());
 
         ElementDeGrille[][] elements2d = {
-            {element0Initial,element1Initial},
-            {element2Initial,element3Initial}
+            {element1Initial,element2Initial},
+            {element3Initial,element4Initial}
         };
         Grille grilleTestCompleteV = new GrilleImpl(elements2d,this.getExpectedElement());
         assertEquals(true,grilleTestCompleteV.isComplete());
 
         ElementDeGrille[][] elements2d2 = {
-            {element0Initial,element1Initial},
-            {null,element3Initial}
+            {element1Initial,element2Initial},
+            {null,element4Initial}
         };
         Grille grilleTestCompleteF2 = new GrilleImpl(elements2d2,this.getExpectedElement());
         assertEquals(false,grilleTestCompleteF2.isComplete());
@@ -139,13 +182,38 @@ public class TestGrille {
     public void testisPossible() throws Exception {
         ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
         Grille grilleTestGetValue = new GrilleImpl(elements2dVide,this.getExpectedElement());
-        assertEquals(true,grilleTestGetValue.isPossible(1,1,element0Initial));
+        assertEquals(true,grilleTestGetValue.isPossible(1,1,element1Initial));
 
         grilleTestGetValue.setValue(1, 1, element1V);
 
         //assertEquals(false,grilleTestGetValue.isPossible(1,1,element0));
         assertEquals(false,grilleTestGetValue.isPossible(0,1,element1V));
         assertEquals(false,grilleTestGetValue.isPossible(1,0,element1V));
+    }
+
+    @Test
+    public void testisPossibleBug() throws Exception {
+        ElementDeGrille[][] elements2d2 = {
+            {element2Initial,null,element3Initial,null},
+            {null,null,null,null},
+            {null,null,null,null},
+            {element3Initial,null,element4Initial,null}
+        };
+        Grille grilleTest = new GrilleImpl(elements2d2,this.getExpectedElement4());
+        grilleTest.setValue(0, 1, element4V);
+        assertEquals(false,grilleTest.isPossible(0,3,element4V));
+    }
+
+    @Test
+    public void testisPossibleSousGrille() throws Exception {
+        ElementDeGrille[][] elements2d2 = {
+            {element2Initial,null,element3Initial,null},
+            {null,null,null,null},
+            {null,null,null,null},
+            {element3Initial,null,element4Initial,null}
+        };
+        Grille grilleTest = new GrilleImpl(elements2d2,this.getExpectedElement4());
+        assertEquals(false,grilleTest.isPossible(1,1,element2V));
     }
 
     @Test
@@ -156,10 +224,21 @@ public class TestGrille {
         grilleTestVide.setValue(0, 1, element1nonIninitial);
         assertEquals(false,grilleTestVide.isValeurInitiale(0,1));    
         ElementDeGrille[][] elements2d = {
-            {element0Initial,element1Initial},
-            {element2Initial,element3Initial}
+            {element1Initial,element2Initial},
+            {element3Initial,element4Initial}
         };
         Grille grilleTestVI = new GrilleImpl(elements2d,this.getExpectedElement());  
         assertEquals(true,grilleTestVI.isValeurInitiale(0,1));  
+    }
+
+    @Test
+    public void testSetValue() throws Exception{
+        ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
+        Grille grilleTestVide = new GrilleImpl(elements2dVide,this.getExpectedElement());
+
+        grilleTestVide.setValue(0, 1, element1nonIninitial);
+        assertNotNull(grilleTestVide.getValue(0, 1));
+        grilleTestVide.setValue(0, 1, null);    
+        assertNull(grilleTestVide.getValue(0, 1));
     }
 }

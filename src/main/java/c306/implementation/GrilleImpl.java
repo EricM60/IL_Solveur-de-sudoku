@@ -78,10 +78,8 @@ public class GrilleImpl implements Grille {
     }
 
     public final int getDimension() {
-        int h = casesGrille.length;
-        int l = casesGrille[0].length;
-        int dim = h * l;
-        return dim;
+        int dimension = casesGrille.length;
+        return dimension;
     }
 
 
@@ -143,13 +141,10 @@ public class GrilleImpl implements Grille {
                     throw new ValeurInitialeModificationException(
                         "impossible de modifier une valeur initiale");
                 }
-                if (value != null && !isPossible(x, y, value)) {
+                
+                if (!isPossible(x, y, value)) {
                     throw new ValeurImpossibleException(
                         "valeur impossible a placer");
-                }
-
-                if (possible.contains(value)) {
-                    casesGrille[x][y] = value;
                 }
                 else {
                     throw new ElementInterditException(
@@ -166,9 +161,14 @@ public class GrilleImpl implements Grille {
                 throw new HorsBornesException(
                     "valeur hors borne");
             }
-            boolean vp = false;
+            
+            
             if (isValeurInitiale(x, y)) {
-                vp = false;
+                return false;
+            }
+
+            if(value == null) {
+                return true;
             }
 
         // Vérifie que la valeur n'est pas déjà présente dans la colonne
@@ -185,19 +185,13 @@ public class GrilleImpl implements Grille {
         }
 
         //verife que la valeur n'est pas dans la sous grille
-        double tailleSousGrille = Math.sqrt(
-            casesGrille.length*casesGrille[0].length);
-        int tailleSousGrillereel = (int) Math.floor(
-            tailleSousGrille);
-        int debutX = (x / tailleSousGrillereel)
-        * tailleSousGrillereel;
-        int debutY = (y / tailleSousGrillereel)
-        * tailleSousGrillereel;
-        for (int i = debutX;
-        i < debutX + tailleSousGrillereel; i++) {
-            for (int j = debutY;
-            j < debutY + tailleSousGrillereel; j++) {
-                if (casesGrille[i][j] == value) {
+        double tailleSousGrille = Math.sqrt(getDimension());
+        int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
+        int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
+        int debutY = (y / tailleSousGrillereel) * tailleSousGrillereel;
+        for (int i = debutX; i < debutX + tailleSousGrillereel; i++) {
+            for (int j = debutY; j < debutY + tailleSousGrillereel; j++) {
+                if (value.equals(casesGrille[i][j])) {
                     return false;
                 }
             }
@@ -205,5 +199,20 @@ public class GrilleImpl implements Grille {
 
         return true;
 
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder chaine = new StringBuilder();
+        double nbLignes = getDimension();
+        double nbColonnes = nbLignes;
+        for (int i = 0; i < nbLignes; i++) {
+            chaine.append(i + ": ");
+            for (int j = 0; j < nbColonnes; j++) {
+                chaine.append(casesGrille[i][j] + " ");
+            }
+            chaine.append('\n');
+        }
+        return chaine.toString();
     }
 }

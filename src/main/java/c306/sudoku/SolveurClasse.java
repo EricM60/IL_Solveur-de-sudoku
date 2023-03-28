@@ -16,43 +16,43 @@ public class SolveurClasse implements Solveur {
      *
      * @param grille Grille à résoudre
      * @return vrai si resolue
+     * @throws ElementInterditException
+     * @throws HorsBornesException
+     * @throws ValeurInitialeModificationException
+     * @throws ValeurImpossibleException
      */
-    public final boolean solve(final Grille grille) {
-        boolean resolue = false;
+    public final boolean solve(final Grille grille) throws HorsBornesException, ElementInterditException, ValeurImpossibleException, ValeurInitialeModificationException {
 
+        System.out.println(grille);
         boolean possible = false;
 
         Set<ElementDeGrille> elementvalide = grille.getElements();
 
-        double nbLignes = Math.sqrt(grille.getDimension());
-        double nbColonnes = Math.sqrt(grille.getDimension());
+        
+        if(grille.isComplete()==true) {
+            return true;
+        }
+
+        int nbLignes = grille.getDimension();
+        int nbColonnes = nbLignes;
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
-                try {
-                        for (ElementDeGrille cases : elementvalide) {
-                            possible = grille.isPossible(i, j, cases);
-                            if(possible == true) {
-                                grille.setValue(i, j, cases);
-                            }
+                for (ElementDeGrille cases : elementvalide) {
+                    possible = grille.isPossible(i, j, cases);
+                    ElementDeGrille element = grille.getValue(i, j);
+                    System.out.println(i + "," +j + ": " + cases + " possible = "+ possible);
+                    if(possible == true && element == null) {
+                        grille.setValue(i, j, cases);
+                        System.out.println(i + "," +j + ": " + cases);
+                        if(solve(grille)) {
+                            return true;
                         }
-                    
-                } catch (HorsBornesException e) {
-                    System.out.println("valeur hors borne");
-                } catch (ElementInterditException e) {
-                    System.out.println("valeur interdite");
-                } catch (ValeurImpossibleException e) {
-                    System.out.println("valeur impossible");
-                } catch (ValeurInitialeModificationException e) {
-                    System.out.println("valeur initiale non modifiable");
+                        grille.setValue(i, j, null);
+                    }
                 }
             }
         }
-
-        if(grille.isComplete()==true) {
-            resolue = true;
-        }
-
-        return resolue;
+        return false;
 
     }
 

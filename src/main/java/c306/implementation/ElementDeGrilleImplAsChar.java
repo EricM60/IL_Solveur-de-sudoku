@@ -46,11 +46,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + element;
-        result = prime * result + (vi ? 1231 : 1237);
-        return result;
+        return element;
     }
 
     @Override
@@ -64,9 +60,12 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
         ElementDeGrilleImplAsChar other = (ElementDeGrilleImplAsChar) obj;
         if (element != other.element)
             return false;
-        if (vi != other.vi)
-            return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(element);
     }
 
     
