@@ -7,7 +7,6 @@ import c306.exception.ValeurInitialeModificationException;
 import c306.sudoku.ElementDeGrille;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import c306.sudoku.Grille;
@@ -66,7 +65,7 @@ public class GrilleImpl implements Grille {
             }
         }
         
-        this.elementAutorise = elementAutorise;
+        this.elementAutorise = new HashSet<>(getExpectedElement());
     }
 
     public GrilleImpl(final ElementDeGrille[][] grille) {
@@ -86,8 +85,6 @@ public class GrilleImpl implements Grille {
     @Override
     public final Set<ElementDeGrille> getElements() {
         Set<ElementDeGrille> elements = new HashSet<>();
-        int taille = elementAutorise.size();
-        Iterator iter = elementAutorise.iterator();
         elements.addAll(elementAutorise);
         return elements;
     }

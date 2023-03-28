@@ -8,8 +8,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-
 import c306.exception.ElementInterditException;
 import c306.exception.HorsBornesException;
 import c306.exception.ValeurImpossibleException;
@@ -35,11 +33,6 @@ import c306.implementation.ElementDeGrilleImplAsChar;
  * @author Sébastien Choplin <sebastien.choplin@u-picardie.fr>
  */
 public final class GrilleParser {
-
-    /**
-     * Caractère correspondant aux cases vides.
-     */
-    private static final char EMPTY = '-';
 
     /**
      * constructeur.
