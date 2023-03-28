@@ -180,15 +180,33 @@ public class TestGrille {
 //testes grille 3*3 si dim = 9 (testee sur dim 4*4)
     @Test
     public void testisPossible() throws Exception {
-        ElementDeGrille[][] elements2dVide = new ElementDeGrille[2][2];
-        Grille grilleTestGetValue = new GrilleImpl(elements2dVide,this.getExpectedElement());
-        assertEquals(true,grilleTestGetValue.isPossible(1,1,element1Initial));
+        ElementDeGrille[][] elements2d2 = {
+            {null,null,null,null},
+            {null,null,null,null},
+            {null,null,null,null},
+            {null,null,null,null}
+        };
+        Grille grilleTest = new GrilleImpl(elements2d2,this.getExpectedElement4());
+        assertEquals(true,grilleTest.isPossible(0,0,element1V));
 
-        grilleTestGetValue.setValue(1, 1, element1V);
+        grilleTest.setValue(0, 0, element1V);
 
-        //assertEquals(false,grilleTestGetValue.isPossible(1,1,element0));
-        assertEquals(false,grilleTestGetValue.isPossible(0,1,element1V));
-        assertEquals(false,grilleTestGetValue.isPossible(1,0,element1V));
+        assertEquals(false,grilleTest.isPossible(0,1,element1V));
+        assertEquals(false,grilleTest.isPossible(1,0,element1V));
+        assertEquals(false,grilleTest.isPossible(1,1,element1V));
+
+        assertEquals(true,grilleTest.isPossible(0,1,element2V));
+        assertEquals(true,grilleTest.isPossible(1,0,element2V));
+        assertEquals(true,grilleTest.isPossible(1,1,element2V));
+        
+
+        assertEquals(false,grilleTest.isPossible(0,1,new ElementDeGrilleImplAsChar('1')));
+        assertEquals(false,grilleTest.isPossible(1,0,new ElementDeGrilleImplAsChar('1')));
+        assertEquals(false,grilleTest.isPossible(1,1,new ElementDeGrilleImplAsChar('1')));
+
+        assertEquals(true,grilleTest.isPossible(0,1,new ElementDeGrilleImplAsChar('2')));
+        assertEquals(true,grilleTest.isPossible(1,0,new ElementDeGrilleImplAsChar('2')));
+        assertEquals(true,grilleTest.isPossible(1,1,new ElementDeGrilleImplAsChar('2')));
     }
 
     @Test
@@ -202,6 +220,18 @@ public class TestGrille {
         Grille grilleTest = new GrilleImpl(elements2d2,this.getExpectedElement4());
         grilleTest.setValue(0, 1, element4V);
         assertEquals(false,grilleTest.isPossible(0,3,element4V));
+    }
+
+    @Test
+    public void testisPossibleBugColonne() throws Exception {
+        ElementDeGrille[][] elements2d2 = {
+            {element2Initial,element1Initial,element3Initial,null},
+            {element4Initial,element3Initial,element1Initial,element2Initial},
+            {null,null,element1Initial,null},
+            {element3Initial,null,element4Initial,element2Initial}
+        };
+        Grille grilleTest = new GrilleImpl(elements2d2,this.getExpectedElement4());
+        assertEquals(false,grilleTest.isPossible(0,2,element4V));
     }
 
     @Test

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import c306.implementation.ElementDeGrilleImplAsChar;
 import c306.exception.ElementInterditException;
@@ -73,6 +74,7 @@ public class TestSolveur {
 
     
 
+    @Timeout(5)
     @Test
     public void tetsgetSolveurValide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException, ValeurInitialeModificationException {
         System.out.println(grilleTest);

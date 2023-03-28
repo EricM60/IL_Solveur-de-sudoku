@@ -159,6 +159,9 @@ public class GrilleImpl implements Grille {
                     throw new ValeurImpossibleException(
                         "valeur impossible a placer");
                 }
+                else {
+                    casesGrille[x][y] = value;
+                }
 
             }
 
@@ -169,7 +172,7 @@ public class GrilleImpl implements Grille {
 
             Set<ElementDeGrille> possible = getElements();
 
-            if (!possible.contains(value)) {
+            if (!possible.contains(value) && value != null) {
                 throw new ElementInterditException(
                     "characere interdit");
             }
@@ -189,21 +192,21 @@ public class GrilleImpl implements Grille {
                 return true;
             }
 
-        // Vérifie que la valeur n'est pas déjà présente dans la colonne
-        for (int i = 0; i < casesGrille.length; i++) {
-            if (casesGrille[x][i] == value) {
+        // Vérifie que la valeur n'est pas déjà présente dans la ligne
+        for (int i = 0; i < getDimension(); i++) {
+            if (value.equals(casesGrille[x][i])) {
                 return false;
             }
         }
-        // Vérifie que la valeur n'est pas déjà présente dans la ligne
-            for (int j = 0; j < casesGrille[0].length; j++) {
-                if (casesGrille[y][j]  == value) {
+        // Vérifie que la valeur n'est pas déjà présente dans la colonne
+            for (int j = 0; j < getDimension(); j++) {
+                if (value.equals(casesGrille[j][y])) {
                     return false;
             }
         }
 
         //verife que la valeur n'est pas dans la sous grille
-        double tailleSousGrille = Math.sqrt(casesGrille.length*casesGrille[0].length);
+        double tailleSousGrille = Math.sqrt(getDimension());
         int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
         int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
         int debutY = (y / tailleSousGrillereel) * tailleSousGrillereel;
