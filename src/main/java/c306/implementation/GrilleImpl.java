@@ -154,10 +154,7 @@ public class GrilleImpl implements Grille {
 
             Set<ElementDeGrille> possible = getElements();
 
-            if (possible.contains(value)) {
-                casesGrille[x][y] = value;
-            }
-            else {
+            if (!possible.contains(value)) {
                 throw new ElementInterditException(
                     "characere interdit");
             }
@@ -191,19 +188,13 @@ public class GrilleImpl implements Grille {
         }
 
         //verife que la valeur n'est pas dans la sous grille
-        double tailleSousGrille = Math.sqrt(
-            casesGrille.length*casesGrille[0].length);
-        int tailleSousGrillereel = (int) Math.floor(
-            tailleSousGrille);
-        int debutX = (x / tailleSousGrillereel)
-        * tailleSousGrillereel;
-        int debutY = (y / tailleSousGrillereel)
-        * tailleSousGrillereel;
-        for (int i = debutX;
-        i < debutX + tailleSousGrillereel; i++) {
-            for (int j = debutY;
-            j < debutY + tailleSousGrillereel; j++) {
-                if (casesGrille[i][j] == value) {
+        double tailleSousGrille = Math.sqrt(casesGrille.length*casesGrille[0].length);
+        int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
+        int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
+        int debutY = (y / tailleSousGrillereel) * tailleSousGrillereel;
+        for (int i = debutX; i < debutX + tailleSousGrillereel; i++) {
+            for (int j = debutY; j < debutY + tailleSousGrillereel; j++) {
+                if (value.equals(casesGrille[i][j])) {
                     return false;
                 }
             }
