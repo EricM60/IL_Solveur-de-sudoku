@@ -6,7 +6,6 @@ import c306.exception.ValeurImpossibleException;
 import c306.exception.ValeurInitialeModificationException;
 import c306.sudoku.ElementDeGrille;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -65,8 +64,7 @@ public class GrilleImpl implements Grille {
                 this.casesGrille[i][j] = grille[i][j];
             }
         }
-        this.elementAutorise = new HashSet<>();
-        Collections.addAll(this.elementAutorise, getExpectedElement().toArray(new ElementDeGrille[0]));
+        this.elementAutorise = new HashSet<>(getExpectedElement());
     }
 
     public GrilleImpl(final ElementDeGrille[][] grille) {
