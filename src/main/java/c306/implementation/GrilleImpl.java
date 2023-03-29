@@ -54,29 +54,28 @@ public class GrilleImpl implements Grille {
         return expectedElements;
     }
 
-
-    public GrilleImpl(final ElementDeGrille[][] grille, final Set<ElementDeGrille> elementAutorise) {
-
+    public GrilleImpl(final ElementDeGrille[][] grille, final Set<ElementDeGrille> paramElementAutorise) {
         this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
-        
+
         for (int i = 0; i < grille.length; i++) {
             for (int j = 0; j < grille[i].length; j++) {
                 this.casesGrille[i][j] = grille[i][j];
             }
         }
         this.elementAutorise = new HashSet<>(getExpectedElement());
+        this.elementAutorise.addAll(paramElementAutorise);
     }
 
     public GrilleImpl(final ElementDeGrille[][] grille) {
 
         this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
-        
+
         for (int i = 0; i < grille.length; i++) {
             for (int j = 0; j < grille[i].length; j++) {
                 this.casesGrille[i][j] = grille[i][j];
             }
         }
-        
+
         this.elementAutorise = getExpectedElement();
     }
 
@@ -150,12 +149,11 @@ public class GrilleImpl implements Grille {
                     throw new ValeurInitialeModificationException(
                         "impossible de modifier une valeur initiale");
                 }
-                
+
                 if (!isPossible(x, y, value)) {
                     throw new ValeurImpossibleException(
                         "valeur impossible a placer");
-                }
-                else {
+                } else {
                     casesGrille[x][y] = value;
                 }
 
