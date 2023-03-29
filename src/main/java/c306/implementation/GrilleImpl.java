@@ -66,9 +66,7 @@ public class GrilleImpl implements Grille {
             }
         }
         this.elementAutorise = new HashSet<>();
-        for (ElementDeGrille elem : getExpectedElement()) {
-            this.elementAutorise.add(elem);
-        }
+        Collections.addAll(this.elementAutorise, getExpectedElement().toArray(new ElementDeGrille[0]));
     }
 
     public GrilleImpl(final ElementDeGrille[][] grille) {
