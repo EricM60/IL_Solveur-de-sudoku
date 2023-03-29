@@ -40,11 +40,11 @@ public class SolveurClasse implements Solveur {
                 for (ElementDeGrille cases : elementvalide) {
                     possible = grille.isPossible(i, j, cases);
                     ElementDeGrille element = grille.getValue(i, j);
-                    System.out.println(i + "," +j + ": " + cases + " possible = "+ possible);
-                    if(possible == true && element == null) {
+                    System.out.println(i + "," + j + ": " + cases + " possible = "+ possible);
+                    if (possible == true && element == null) {
                         grille.setValue(i, j, cases);
-                        System.out.println(i + "," +j + ": " + cases);
-                        if(solve(grille)) {
+                        System.out.println(i + "," + j + ": " + cases);
+                        if (solve(grille)) {
                             return true;
                         }
                         grille.setValue(i, j, null);
