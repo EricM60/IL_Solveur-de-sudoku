@@ -21,5 +21,6 @@ public interface Solveur {
      * @throws ValeurInitialeModificationException
      * @throws ValeurImpossibleException
      */
-    boolean solve(Grille grille) throws HorsBornesException, ElementInterditException, ValeurImpossibleException, ValeurInitialeModificationException;
+    boolean solve(Grille grille) throws HorsBornesException,
+    ElementInterditException, ValeurImpossibleException, ValeurInitialeModificationException;
 }

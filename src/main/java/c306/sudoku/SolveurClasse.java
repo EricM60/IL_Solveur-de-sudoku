@@ -22,7 +22,8 @@ public class SolveurClasse implements Solveur {
      * @throws ValeurImpossibleException
      */
     public final boolean solve(final Grille grille)
-    throws HorsBornesException, ElementInterditException, ValeurImpossibleException, ValeurInitialeModificationException {
+    throws HorsBornesException, ElementInterditException,
+    ValeurImpossibleException, ValeurInitialeModificationException {
 
         System.out.println(grille);
         boolean possible = false;
