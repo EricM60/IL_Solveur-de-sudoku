@@ -86,7 +86,8 @@ public interface Grille {
      * @throws ValeurImpossibleException
      */
     boolean isPossible(int x, int y, ElementDeGrille value)
-            throws HorsBornesException, ElementInterditException, ValeurImpossibleException;
+            throws HorsBornesException,
+            ElementInterditException, ValeurImpossibleException;
 
     /**
      * @param x     position x dans la grille

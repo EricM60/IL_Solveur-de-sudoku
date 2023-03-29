@@ -54,7 +54,8 @@ public class GrilleImpl implements Grille {
         return expectedElements;
     }
 
-    public GrilleImpl(final ElementDeGrille[][] grille, final Set<ElementDeGrille> paramElementAutorise) {
+    public GrilleImpl(final ElementDeGrille[][] grille,
+    final Set<ElementDeGrille> paramElementAutorise) {
         this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
 
         for (int i = 0; i < grille.length; i++) {
@@ -164,7 +165,7 @@ public class GrilleImpl implements Grille {
         final int x, final int y, final ElementDeGrille value)
             throws HorsBornesException, ElementInterditException {
 
-            
+
 
             if (!elementAutorise.contains(value) && value != null) {
                 throw new ElementInterditException(
@@ -176,13 +177,13 @@ public class GrilleImpl implements Grille {
                 throw new HorsBornesException(
                     "valeur hors borne");
             }
-            
-            
+
+
             if (isValeurInitiale(x, y)) {
                 return false;
             }
 
-            if(value == null) {
+            if (value == null) {
                 return true;
             }
 
@@ -217,7 +218,7 @@ public class GrilleImpl implements Grille {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         StringBuilder chaine = new StringBuilder();
         double nbLignes = getDimension();
         double nbColonnes = nbLignes;

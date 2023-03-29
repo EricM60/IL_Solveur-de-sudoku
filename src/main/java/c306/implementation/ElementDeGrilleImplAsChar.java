@@ -45,30 +45,31 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return element;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         ElementDeGrilleImplAsChar other = (ElementDeGrilleImplAsChar) obj;
-        if (element != other.element)
+        if (element != other.element) {
             return false;
+        }
         return true;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return String.valueOf(element);
     }
-
-    
-
 
 }
