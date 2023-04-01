@@ -38,27 +38,34 @@ public interface Grille {
          * @param value élément de grille à mettre dans la case,
          *              null pour vider la case
          * @throws ValeurImpossibleException
-         *                                             si l'élément de grille n'est pas
+         *                                             si l'élément de
+         *                                             grille n'est pas
          *                                             autorisé
-         *                                             à cette position dans la grille
-         *                                             aux vues des autres valeurs de la
+         *                                             à cette position
+         *                                             dans la grille
+         *                                             aux vues des autres
+         *                                             valeurs de la
          *                                             grille
          * @throws ElementInterditException
-         *                                             si l'élément de grille n'est pas
+         *                                             si l'élément de
+         *                                             grille n'est pas
          *                                             autorisé
-         *                                             dans cette grille pouvant être
+         *                                             dans cette grille
+         *                                             pouvant être
          *                                             mis dans la grille
          * @throws HorsBornesException
-         *                                             si x ou y sont en dehors de la
+         *                                             si x ou y sont
+         *                                             en dehors de la
          *                                             grille
          * @throws ValeurInitialeModificationException
-         *                                             si une valeur initiale de la
-         *                                             grille
+         *                                             si une valeur initiale
+         *                                             de la grille
          *                                             est en position x,y
          */
         void setValue(int x, int y, ElementDeGrille value)
                         throws HorsBornesException, ValeurImpossibleException,
-                        ElementInterditException, ValeurInitialeModificationException;
+                        ElementInterditException,
+                        ValeurInitialeModificationException;
 
         /**
          * Renvoie une valeur de la grille.
@@ -85,7 +92,8 @@ public interface Grille {
          * @param y     position y dans la grille
          * @param value valeur a mettre dans la case
          * @return true si value peut être placé dans la grille en position x,y
-         *         en respectant les règles du sudoku et sans modifier une valeur
+         *         en respectant les règles du sudoku
+         *         et sans modifier une valeur
          *         initiale.
          * @throws HorsBornesException
          *                                   si une valeur est hors
@@ -104,7 +112,8 @@ public interface Grille {
         /**
          * @param x position x dans la grille
          * @param y position y dans la grille
-         * @return true si la case x,y contient une valeur initiale de la grille.
+         * @return true si la case x,y contient
+         *         une valeur initiale de la grille.
          */
         boolean isValeurInitiale(int x, int y);
 }

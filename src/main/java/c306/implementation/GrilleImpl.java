@@ -54,7 +54,8 @@ public class GrilleImpl implements Grille {
     }
 
     /**
-     * Constructeur pour créer une nouvelle instance de GrilleImpl avec une grille
+     * Constructeur pour créer une nouvelle
+     * instance de GrilleImpl avec une grille
      * et une liste d'éléments autorisés.
      *
      * @param grille               une grille
@@ -74,7 +75,8 @@ public class GrilleImpl implements Grille {
     }
 
     /**
-     * Constructeur pour créer une nouvelle instance de GrilleImpl avec une grille.
+     * Constructeur pour créer une nouvelle
+     * instance de GrilleImpl avec une grille.
      *
      * @param grille une grille
      */
@@ -185,6 +187,24 @@ public class GrilleImpl implements Grille {
 
     }
 
+    /**
+     * 
+     * Vérifie si une valeur donnée peut être placée à une position donnée de la
+     * grille.
+     * 
+     * @param x     l'indice de ligne de la position à vérifier
+     * 
+     * @param y     l'indice de colonne de la position à vérifier
+     * 
+     * @param value la valeur à placer dans la grille
+     * 
+     * @return true si la valeur peut être placée à la position donnée, false sinon
+     * 
+     * @throws HorsBornesException      si la position (x, y) est hors des bornes de
+     *                                  la grille
+     * 
+     * @throws ElementInterditException si la valeur à placer n'est pas autorisée
+     */
     @Override
     public final boolean isPossible(
             final int x, final int y, final ElementDeGrille value)
@@ -209,20 +229,18 @@ public class GrilleImpl implements Grille {
             return true;
         }
 
-        // Vérifie que la valeur n'est pas déjà présente dans la ligne
         for (int i = 0; i < getDimension(); i++) {
             if (value.equals(casesGrille[x][i])) {
                 return false;
             }
         }
-        // Vérifie que la valeur n'est pas déjà présente dans la colonne
+
         for (int j = 0; j < getDimension(); j++) {
             if (value.equals(casesGrille[j][y])) {
                 return false;
             }
         }
 
-        // verife que la valeur n'est pas dans la sous grille
         double tailleSousGrille = Math.sqrt(getDimension());
         int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
         int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
@@ -239,6 +257,13 @@ public class GrilleImpl implements Grille {
 
     }
 
+    /**
+     * 
+     * Retourne une représentation textuelle de la grille sous forme de chaîne de
+     * caractères.
+     * 
+     * @return une chaîne de caractères représentant la grille
+     */
     @Override
     public final String toString() {
         StringBuilder chaine = new StringBuilder();
