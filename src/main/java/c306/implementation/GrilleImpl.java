@@ -86,7 +86,7 @@ public class GrilleImpl implements Grille {
 
     /**
      * Retourne un ensemble contenant tous
-     * les elements autorises dans la grille.
+     * les elements autorises dans la grille
      * 
      * @return ensemble contenant les elements autorises.
      */

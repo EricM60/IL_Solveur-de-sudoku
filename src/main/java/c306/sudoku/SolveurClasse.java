@@ -24,7 +24,8 @@ public class SolveurClasse implements Solveur {
      *                                             interdite dans une case
      * @throws ValeurInitialeModificationException
      *                                             si une tentative est faite
-     *                                             de modifier une valeur initiale
+     *                                             de modifier une valeur
+     *                                             initiale
      * @throws ValeurImpossibleException
      *                                             si une valeur ne peut pas
      *                                             être placée dans une case
