@@ -17,17 +17,20 @@ public interface Solveur {
      * @param grille Grille à résoudre
      * @return true si la grille a été résolue
      * @throws ElementInterditException
-     *                                             si un élément interdit est trouvé
+     *                                             si un élément interdit
+     *                                             est trouvé
      *                                             dans la grille
      * @throws HorsBornesException
-     *                                             si une coordonnée de la grille
-     *                                             est en dehors des bornes
-     *                                             autorisées
+     *                                             si une coordonnée de
+     *                                             la grille
+     *                                             est en dehors
+     *                                             des bornes autorisées
      * @throws ValeurInitialeModificationException
      *                                             si une valeur initiale est
      *                                             modifiée
      * @throws ValeurImpossibleException
-     *                                             si une valeur est impossible à
+     *                                             si une valeur est
+     *                                             impossible à
      *                                             placer dans la grille
      */
     boolean solve(Grille grille) throws HorsBornesException,
