@@ -33,22 +33,73 @@ public class GrilleImpl implements Grille {
     private ElementDeGrille elementeV = new ElementDeGrilleImplAsChar('e');
     private ElementDeGrille elementfV = new ElementDeGrilleImplAsChar('f');
 
+    /**
+     * Retourne un ensemble contenant tous
+     * les elements autorises dans la grille.
+     * 
+     * @return ensemble contenant les elements autorises.
+     */
     private Set<ElementDeGrille> getExpectedElement() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
+        /**
+         * Element possible de la grille : 1
+         */
         expectedElements.add(element1V);
+        /**
+         * Element possible de la grille : 2
+         */
         expectedElements.add(element2V);
+        /**
+         * Element possible de la grille : 3
+         */
         expectedElements.add(element3V);
+        /**
+         * Element possible de la grille : 4
+         */
         expectedElements.add(element4V);
+        /**
+         * Element possible de la grille : 5
+         */
         expectedElements.add(element5V);
+        /**
+         * Element possible de la grille : 6
+         */
         expectedElements.add(element6V);
+        /**
+         * Element possible de la grille : 7
+         */
         expectedElements.add(element7V);
+        /**
+         * Element possible de la grille : 8
+         */
         expectedElements.add(element8V);
+        /**
+         * Element possible de la grille : 9
+         */
         expectedElements.add(element9V);
+        /**
+         * Element possible de la grille : a
+         */
         expectedElements.add(elementaV);
+        /**
+         * Element possible de la grille : b
+         */
         expectedElements.add(elementbV);
+        /**
+         * Element possible de la grille : c
+         */
         expectedElements.add(elementcV);
+        /**
+         * Element possible de la grille : d
+         */
         expectedElements.add(elementdV);
+        /**
+         * Element possible de la grille : e
+         */
         expectedElements.add(elementeV);
+        /**
+         * Element possible de la grille : f
+         */
         expectedElements.add(elementfV);
         return expectedElements;
     }
