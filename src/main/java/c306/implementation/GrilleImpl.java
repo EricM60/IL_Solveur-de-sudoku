@@ -11,26 +11,77 @@ import java.util.Set;
 
 import c306.sudoku.Grille;
 
+/**
+ * Implementation de l'interface Grille.
+ */
 public class GrilleImpl implements Grille {
-
+    /**
+     * Tableau representant les cases de la grille.
+     */
     private final ElementDeGrille[][] casesGrille;
-
+    /**
+     * Ensemble des elements autorises dans la grille.
+     */
     private final Set<ElementDeGrille> elementAutorise;
-
+    /**
+     * Element possible de la grille : le chiffre 1.
+     */
     private ElementDeGrille element1V = new ElementDeGrilleImplAsChar('1');
+    /**
+     * Element possible de la grille : le chiffre 2.
+     */
     private ElementDeGrille element2V = new ElementDeGrilleImplAsChar('2');
+    /**
+     * Element possible de la grille : le chiffre 3.
+     */
     private ElementDeGrille element3V = new ElementDeGrilleImplAsChar('3');
+    /**
+     * Element possible de la grille : le chiffre 4.
+     */
     private ElementDeGrille element4V = new ElementDeGrilleImplAsChar('4');
+    /**
+     * Element possible de la grille : le chiffre 5.
+     */
     private ElementDeGrille element5V = new ElementDeGrilleImplAsChar('5');
+    /**
+     * Element possible de la grille : le chiffre 6.
+     */
     private ElementDeGrille element6V = new ElementDeGrilleImplAsChar('6');
+    /**
+     * Element possible de la grille : le chiffre 7.
+     */
     private ElementDeGrille element7V = new ElementDeGrilleImplAsChar('7');
+    /**
+     * Element possible de la grille : le chiffre 8.
+     */
     private ElementDeGrille element8V = new ElementDeGrilleImplAsChar('8');
+    /**
+     * Element possible de la grille : le chiffre 9.
+     */
     private ElementDeGrille element9V = new ElementDeGrilleImplAsChar('9');
+    /**
+     * Element possible de la grille : la lettre a.
+     */
     private ElementDeGrille elementaV = new ElementDeGrilleImplAsChar('a');
+    /**
+     * Element possible de la grille : la lettre b.
+     */
     private ElementDeGrille elementbV = new ElementDeGrilleImplAsChar('b');
+    /**
+     * Element possible de la grille : la lettre c.
+     */
     private ElementDeGrille elementcV = new ElementDeGrilleImplAsChar('c');
+    /**
+     * Element possible de la grille : la lettre d.
+     */
     private ElementDeGrille elementdV = new ElementDeGrilleImplAsChar('d');
+    /**
+     * Element possible de la grille : la lettre e.
+     */
     private ElementDeGrille elementeV = new ElementDeGrilleImplAsChar('e');
+    /**
+     * Element possible de la grille : la lettre f.
+     */
     private ElementDeGrille elementfV = new ElementDeGrilleImplAsChar('f');
 
     /**
@@ -41,65 +92,20 @@ public class GrilleImpl implements Grille {
      */
     private Set<ElementDeGrille> getExpectedElement() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
-        /**
-         * Element possible de la grille : 1
-         */
         expectedElements.add(element1V);
-        /**
-         * Element possible de la grille : 2
-         */
         expectedElements.add(element2V);
-        /**
-         * Element possible de la grille : 3
-         */
         expectedElements.add(element3V);
-        /**
-         * Element possible de la grille : 4
-         */
         expectedElements.add(element4V);
-        /**
-         * Element possible de la grille : 5
-         */
         expectedElements.add(element5V);
-        /**
-         * Element possible de la grille : 6
-         */
         expectedElements.add(element6V);
-        /**
-         * Element possible de la grille : 7
-         */
         expectedElements.add(element7V);
-        /**
-         * Element possible de la grille : 8
-         */
         expectedElements.add(element8V);
-        /**
-         * Element possible de la grille : 9
-         */
         expectedElements.add(element9V);
-        /**
-         * Element possible de la grille : a
-         */
         expectedElements.add(elementaV);
-        /**
-         * Element possible de la grille : b
-         */
         expectedElements.add(elementbV);
-        /**
-         * Element possible de la grille : c
-         */
         expectedElements.add(elementcV);
-        /**
-         * Element possible de la grille : d
-         */
         expectedElements.add(elementdV);
-        /**
-         * Element possible de la grille : e
-         */
         expectedElements.add(elementeV);
-        /**
-         * Element possible de la grille : f
-         */
         expectedElements.add(elementfV);
         return expectedElements;
     }
@@ -239,22 +245,19 @@ public class GrilleImpl implements Grille {
     }
 
     /**
-     * 
      * Vérifie si une valeur donnée peut être placée à une position donnée de la
      * grille.
      * 
      * @param x     l'indice de ligne de la position à vérifier
-     * 
      * @param y     l'indice de colonne de la position à vérifier
-     * 
      * @param value la valeur à placer dans la grille
-     * 
-     * @return true si la valeur peut être placée à la position donnée, false sinon
-     * 
-     * @throws HorsBornesException      si la position (x, y) est hors des bornes de
+     * @return true si la valeur peut être placée
+     *         à la position donnée, false sinon
+     * @throws HorsBornesException      si la position (x, y) est
+     *                                  hors des bornes de
      *                                  la grille
-     * 
-     * @throws ElementInterditException si la valeur à placer n'est pas autorisée
+     * @throws ElementInterditException si la valeur à placer n'est
+     *                                  pas autorisée
      */
     @Override
     public final boolean isPossible(
@@ -309,10 +312,10 @@ public class GrilleImpl implements Grille {
     }
 
     /**
-     * 
-     * Retourne une représentation textuelle de la grille sous forme de chaîne de
-     * caractères.
-     * 
+     *
+     * Retourne une représentation textuelle de la grille sous
+     * forme de chaîne de caractères.
+     *
      * @return une chaîne de caractères représentant la grille
      */
     @Override
