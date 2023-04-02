@@ -39,7 +39,7 @@ public class SolveurClasse implements Solveur {
 
         Set<ElementDeGrille> elementvalide = grille.getElements();
 
-        if (grille.isComplete() == true) {
+        if (grille.isComplete()) {
             return true;
         }
 
@@ -52,7 +52,7 @@ public class SolveurClasse implements Solveur {
                     ElementDeGrille element = grille.getValue(i, j);
                     System.out.println(i + "," + j + ": "
                             + cases + " possible = " + possible);
-                    if (possible == true && element == null) {
+                    if (possible && element == null) {
                         grille.setValue(i, j, cases);
                         System.out.println(i + "," + j + ": " + cases);
                         if (solve(grille)) {
