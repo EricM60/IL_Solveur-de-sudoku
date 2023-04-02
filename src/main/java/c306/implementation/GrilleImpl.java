@@ -87,7 +87,7 @@ public class GrilleImpl implements Grille {
     /**
      * Retourne un ensemble contenant tous.
      * les elements autorises dans la grille
-     * 
+     *
      * @return ensemble contenant les elements autorises.
      */
     private Set<ElementDeGrille> getExpectedElement() {
@@ -248,7 +248,7 @@ public class GrilleImpl implements Grille {
     /**
      * Vérifie si une valeur donnée peut être placée à une position donnée de la
      * grille.
-     * 
+     *
      * @param x     l'indice de ligne de la position à vérifier
      * @param y     l'indice de colonne de la position à vérifier
      * @param value la valeur à placer dans la grille
