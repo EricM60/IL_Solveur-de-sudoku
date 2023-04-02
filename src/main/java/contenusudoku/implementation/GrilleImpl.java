@@ -126,7 +126,7 @@ public class GrilleImpl implements Grille {
                 this.casesGrille[i][j] = grille[i][j];
             }
         }
-        this.elementAutorise = paramElementAutorise;
+        this.elementAutorise = new HashSet<>(paramElementAutorise);
     }
 
     /**
