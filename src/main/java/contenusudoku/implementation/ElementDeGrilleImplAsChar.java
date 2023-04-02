@@ -19,7 +19,6 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
 
     /**
      * Constructeur de la classe.
-     * 
      * @param elements entier
      */
     public ElementDeGrilleImplAsChar(final char elements) {
@@ -29,7 +28,6 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
 
     /**
      * Constructeur de la classe.
-     * 
      * @param elements entier
      * @param viM      booléen
      */
@@ -40,7 +38,6 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
 
     /**
      * retourne la validation de la valeur initiale.
-     * 
      * @return la validation que c'est une valeur initiale
      */
     public final boolean getVi() {

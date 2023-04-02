@@ -45,15 +45,17 @@ public final class GrilleParser {
      *
      * @param in recu
      * @throws IOException
-     *                                             format de grille en caractere
+     *                                             format de grille
+     *                                             en caractere
      *                                             incorrect
      * @throws ValeurImpossibleException
-     *                                             si la grille ne respècte pas
+     *                                             si la grille ne
+     *                                             respècte pas
      *                                             les
      *                                             règles
      * @throws ElementInterditException
-     *                                             si la grille contient des
-     *                                             valeurs
+     *                                             si la grille
+     *                                             contient des valeurs
      *                                             interdites
      * @throws ValeurInitialeModificationException
      *                                             si une valeur de la grille
