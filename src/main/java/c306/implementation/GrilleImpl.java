@@ -85,7 +85,7 @@ public class GrilleImpl implements Grille {
     private ElementDeGrille elementfV = new ElementDeGrilleImplAsChar('f');
 
     /**
-     * Retourne un ensemble contenant tous
+     * Retourne un ensemble contenant tous.
      * les elements autorises dans la grille
      * 
      * @return ensemble contenant les elements autorises.
