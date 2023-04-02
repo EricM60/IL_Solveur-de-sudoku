@@ -1,4 +1,5 @@
-package c306.sudoku;
+package contenusudoku.sudoku;
+
 /**
  * @author Sébastien Choplin <sebastien.choplin@u-picardie.fr>
  */

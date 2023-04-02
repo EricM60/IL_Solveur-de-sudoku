@@ -1,9 +1,9 @@
-package c306.sudoku;
+package contenusudoku.sudoku;
 
-import c306.exception.ElementInterditException;
-import c306.exception.HorsBornesException;
-import c306.exception.ValeurImpossibleException;
-import c306.exception.ValeurInitialeModificationException;
+import contenusudoku.exception.ElementInterditException;
+import contenusudoku.exception.HorsBornesException;
+import contenusudoku.exception.ValeurImpossibleException;
+import contenusudoku.exception.ValeurInitialeModificationException;
 
 /**
  * Interface de résolveur de Grille.

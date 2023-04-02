@@ -1,5 +1,4 @@
-package c306.sudoku;
-
+package contenusudoku.sudoku;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,19 +7,20 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import c306.exception.ElementInterditException;
-import c306.exception.HorsBornesException;
-import c306.exception.ValeurImpossibleException;
-import c306.exception.ValeurInitialeModificationException;
-import c306.implementation.GrilleImpl;
-import c306.implementation.ElementDeGrilleImplAsChar;
+
+import contenusudoku.exception.ElementInterditException;
+import contenusudoku.exception.HorsBornesException;
+import contenusudoku.exception.ValeurImpossibleException;
+import contenusudoku.exception.ValeurInitialeModificationException;
+import contenusudoku.implementation.ElementDeGrilleImplAsChar;
+import contenusudoku.implementation.GrilleImpl;
 
 /**
  * Méthodes utilitaire permettant de créer une
- *  Grille à partir d'un fichier texte.
+ * Grille à partir d'un fichier texte.
  * Il est attendu que la première ligne contienne :
- *  le symbole de case vide, suivi des symboles
- *  possibles dans la grille (en UTF-8).
+ * le symbole de case vide, suivi des symboles
+ * possibles dans la grille (en UTF-8).
  * Les autres lignes contiennent le contenu de la grille.
  * <p>
  * Exemple:
@@ -45,24 +45,28 @@ public final class GrilleParser {
      *
      * @param in recu
      * @throws IOException
-     *  format de grille en caractere incorrect
+     *                                             format de grille en caractere
+     *                                             incorrect
      * @throws ValeurImpossibleException
-     *  si la grille ne respècte pas les règles
+     *                                             si la grille ne respècte pas les
+     *                                             règles
      * @throws ElementInterditException
-     *  si la grille contient des valeurs interdites
+     *                                             si la grille contient des valeurs
+     *                                             interdites
      * @throws ValeurInitialeModificationException
-     *  si une valeur de la grille initiale est modifiée
+     *                                             si une valeur de la grille
+     *                                             initiale est modifiée
      * @throws HorsBornesException
-     *  si des élèments sont en dehors de la grille
+     *                                             si des élèments sont en dehors de
+     *                                             la grille
      * @return la grille
      */
     public static Grille parse(final InputStream in)
             throws IOException, ElementInterditException,
-             ValeurInitialeModificationException, HorsBornesException,
-             ValeurImpossibleException {
+            ValeurInitialeModificationException, HorsBornesException,
+            ValeurImpossibleException {
         try (BufferedReader reader = new BufferedReader(
-            new InputStreamReader(in, StandardCharsets.UTF_8))) {
-
+                new InputStreamReader(in, StandardCharsets.UTF_8))) {
 
             String line = reader.readLine();
             if (line == null || line.length() == 0) {
@@ -70,8 +74,7 @@ public final class GrilleParser {
             }
             final int dimension = line.length() - 1;
             final char vide = line.charAt(0);
-            Map<Character, ElementDeGrille>
-            elementDeGrilleMap = new HashMap<>();
+            Map<Character, ElementDeGrille> elementDeGrilleMap = new HashMap<>();
             for (int i = 1; i < line.length(); i++) {
                 char value = line.charAt(i);
                 if (value == vide) {
@@ -79,40 +82,37 @@ public final class GrilleParser {
                 }
                 if (elementDeGrilleMap.containsKey(value)) {
                     throw new IllegalArgumentException(
-                        "valeur possible dupliquée : " + value);
+                            "valeur possible dupliquée : " + value);
                 }
                 elementDeGrilleMap.put(
-                    value, new ElementDeGrilleImplAsChar(value));
+                        value, new ElementDeGrilleImplAsChar(value));
             }
 
             if (elementDeGrilleMap.size() != dimension) {
                 throw new IllegalArgumentException(
-                    "pas le bon nombre de valeurs possibles");
+                        "pas le bon nombre de valeurs possibles");
             }
-            ElementDeGrille[][] elementDeGrilles =
-            elementDeGrilleMap.values().toArray(new ElementDeGrille[][]{});
+            ElementDeGrille[][] elementDeGrilles = elementDeGrilleMap.values().toArray(new ElementDeGrille[][] {});
             Grille grille = new GrilleImpl(elementDeGrilles);
 
             for (int i = 0; i < dimension; i++) {
                 line = reader.readLine();
                 if (line == null || line.length() != dimension) {
                     throw new IOException(
-                        "pas le bon nombre sur la ligne : " + line);
+                            "pas le bon nombre sur la ligne : " + line);
                 }
                 for (int j = 0; j < dimension; j++) {
                     char c = line.charAt(j);
                     if (c != vide) {
-                        ElementDeGrille elementDeGrille =
-                        elementDeGrilleMap.get(c);
+                        ElementDeGrille elementDeGrille = elementDeGrilleMap.get(c);
                         if (elementDeGrille == null) {
                             throw new ValeurImpossibleException(
-                                String.valueOf(c));
+                                    String.valueOf(c));
                         }
                         grille.setValue(i, j, elementDeGrille);
                     }
                 }
             }
-
 
             return grille;
         }
