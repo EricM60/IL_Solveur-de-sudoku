@@ -48,16 +48,19 @@ public final class GrilleParser {
      *                                             format de grille en caractere
      *                                             incorrect
      * @throws ValeurImpossibleException
-     *                                             si la grille ne respècte pas les
+     *                                             si la grille ne respècte pas
+     *                                             les
      *                                             règles
      * @throws ElementInterditException
-     *                                             si la grille contient des valeurs
+     *                                             si la grille contient des
+     *                                             valeurs
      *                                             interdites
      * @throws ValeurInitialeModificationException
      *                                             si une valeur de la grille
      *                                             initiale est modifiée
      * @throws HorsBornesException
-     *                                             si des élèments sont en dehors de
+     *                                             si des élèments sont en
+     *                                             dehors de
      *                                             la grille
      * @return la grille
      */
@@ -92,7 +95,8 @@ public final class GrilleParser {
                 throw new IllegalArgumentException(
                         "pas le bon nombre de valeurs possibles");
             }
-            ElementDeGrille[][] elementDeGrilles = elementDeGrilleMap.values().toArray(new ElementDeGrille[][] {});
+            ElementDeGrille[][] elementDeGrilles = elementDeGrilleMap.values()
+                    .toArray(new ElementDeGrille[][] {});
             Grille grille = new GrilleImpl(elementDeGrilles);
 
             for (int i = 0; i < dimension; i++) {
@@ -104,7 +108,8 @@ public final class GrilleParser {
                 for (int j = 0; j < dimension; j++) {
                     char c = line.charAt(j);
                     if (c != vide) {
-                        ElementDeGrille elementDeGrille = elementDeGrilleMap.get(c);
+                        ElementDeGrille elementDeGrille = elementDeGrilleMap
+                                .get(c);
                         if (elementDeGrille == null) {
                             throw new ValeurImpossibleException(
                                     String.valueOf(c));
