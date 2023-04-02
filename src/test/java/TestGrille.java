@@ -3,18 +3,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import contenusudoku.exception.ElementInterditException;
-import contenusudoku.exception.HorsBornesException;
-import contenusudoku.exception.ValeurImpossibleException;
-import contenusudoku.exception.ValeurInitialeModificationException;
 import contenusudoku.implementation.ElementDeGrilleImplAsChar;
 import contenusudoku.implementation.GrilleImpl;
 import contenusudoku.sudoku.ElementDeGrille;

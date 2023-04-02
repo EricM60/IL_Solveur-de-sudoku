@@ -127,7 +127,6 @@ public class GrilleImpl implements Grille {
             }
         }
         this.elementAutorise = paramElementAutorise;
-        this.elementAutorise.addAll(paramElementAutorise);
     }
 
     /**
