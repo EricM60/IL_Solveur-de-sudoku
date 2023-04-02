@@ -207,7 +207,8 @@ public class GrilleImpl implements Grille {
         boolean vi = false;
         try {
             if (getValue(x, y) != null
-                    && ((ElementDeGrilleImplAsChar) casesGrille[x][y]).getVi() == true) {
+                    && ((ElementDeGrilleImplAsChar) casesGrille[x][y])
+                            .getVi() == true) {
                 vi = true;
             }
         } catch (HorsBornesException e) {
